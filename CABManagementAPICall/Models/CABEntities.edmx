@@ -1,0 +1,1172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cabmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="cabmanagementModelStoreContainer">
+          <EntitySet Name="CABTimes" EntityType="cabmanagementModel.Store.CABTimes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.Store.tblAttachments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCAB" EntityType="cabmanagementModel.Store.tblCAB" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.Store.tblCABAnalysis" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABCodeReview" EntityType="cabmanagementModel.Store.tblCABCodeReview" store:Type="Tables" store:Schema="dbo" store:Name="tblCABCodeReview">
+            <DefiningQuery>SELECT 
+      [tblCABCodeReview].[ID] AS [ID], 
+      [tblCABCodeReview].[TaskerID] AS [TaskerID], 
+      [tblCABCodeReview].[CAB_HD_No] AS [CAB_HD_No], 
+      [tblCABCodeReview].[InsertDate] AS [InsertDate]
+      FROM [dbo].[tblCABCodeReview] AS [tblCABCodeReview]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblCABComment" EntityType="cabmanagementModel.Store.tblCABComment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABHistory" EntityType="cabmanagementModel.Store.tblCABHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABSchedules" EntityType="cabmanagementModel.Store.tblCABSchedules" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABStartEnd" EntityType="cabmanagementModel.Store.tblCABStartEnd" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABTaska" EntityType="cabmanagementModel.Store.tblCABTaska" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABTaskaH" EntityType="cabmanagementModel.Store.tblCABTaskaH" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABTesting" EntityType="cabmanagementModel.Store.tblCABTesting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCABVoting" EntityType="cabmanagementModel.Store.tblCABVoting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDevelopers" EntityType="cabmanagementModel.Store.tblDevelopers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDevelopersTimes" EntityType="cabmanagementModel.Store.tblDevelopersTimes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblStatusi" EntityType="cabmanagementModel.Store.tblStatusi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTaskHistory" EntityType="cabmanagementModel.Store.tblTaskHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="cabmanagementModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblAttachments_tblCAB" Association="cabmanagementModel.Store.FK_tblAttachments_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblAttachments" EntitySet="tblAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABAnalysis_tblCAB" Association="cabmanagementModel.Store.FK_tblCABAnalysis_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABAnalysis" EntitySet="tblCABAnalysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABAnalysis_tblDevelopers" Association="cabmanagementModel.Store.FK_tblCABAnalysis_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABAnalysis" EntitySet="tblCABAnalysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABComment_tblCAB" Association="cabmanagementModel.Store.FK_tblCABComment_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABComment" EntitySet="tblCABComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABComment_tblDevelopers" Association="cabmanagementModel.Store.FK_tblCABComment_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABComment" EntitySet="tblCABComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABComment_tblStatusi" Association="cabmanagementModel.Store.FK_tblCABComment_tblStatusi">
+            <End Role="tblStatusi" EntitySet="tblStatusi" />
+            <End Role="tblCABComment" EntitySet="tblCABComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABHistory_tblCAB" Association="cabmanagementModel.Store.FK_tblCABHistory_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABHistory" EntitySet="tblCABHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABHistory_tblCABAnalysis" Association="cabmanagementModel.Store.FK_tblCABHistory_tblCABAnalysis">
+            <End Role="tblCABAnalysis" EntitySet="tblCABAnalysis" />
+            <End Role="tblCABHistory" EntitySet="tblCABHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABHistory_tblStatusi" Association="cabmanagementModel.Store.FK_tblCABHistory_tblStatusi">
+            <End Role="tblStatusi" EntitySet="tblStatusi" />
+            <End Role="tblCABHistory" EntitySet="tblCABHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABStartEnd_tblCAB" Association="cabmanagementModel.Store.FK_tblCABStartEnd_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABStartEnd" EntitySet="tblCABStartEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABTaska_tblDevelopers" Association="cabmanagementModel.Store.FK_tblCABTaska_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABTaska" EntitySet="tblCABTaska" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABTaska_tblDevelopers1" Association="cabmanagementModel.Store.FK_tblCABTaska_tblDevelopers1">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABTaska" EntitySet="tblCABTaska" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABTesting_tblCAB" Association="cabmanagementModel.Store.FK_tblCABTesting_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABTesting" EntitySet="tblCABTesting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABVoting_tblDevelopers" Association="cabmanagementModel.Store.FK_tblCABVoting_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABVoting" EntitySet="tblCABVoting" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CABTimes">
+          <Key>
+            <PropertyRef Name="CAB_HD_No" />
+          </Key>
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="ActualAnalyzeTime" Type="int" />
+          <Property Name="ActualTaskingTime" Type="int" />
+          <Property Name="ScheduledTaskingStart" Type="date" />
+          <Property Name="ScheduledTaskingEnd" Type="date" />
+          <Property Name="PredictedWHForTesting" Type="int" />
+        </EntityType>
+        <EntityType Name="tblAttachments">
+          <Key>
+            <PropertyRef Name="AttachID" />
+          </Key>
+          <Property Name="AttachID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="Attach_Address" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCAB">
+          <Key>
+            <PropertyRef Name="CAB_HD_No" />
+          </Key>
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="CAB_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_Type" Type="varchar" MaxLength="50" />
+          <Property Name="CAB_HD_Date" Type="date" />
+          <Property Name="CAB_HD_Title" Type="varchar(max)" />
+          <Property Name="CAB_Sender" Type="varchar" MaxLength="50" />
+          <Property Name="CAB_Priority" Type="varchar" MaxLength="50" />
+          <Property Name="CAB_Note" Type="varchar(max)" />
+          <Property Name="Developer_Comment" Type="varchar(max)" />
+          <Property Name="CAB_Department" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblCABAnalysis">
+          <Key>
+            <PropertyRef Name="AnalyzeID" />
+          </Key>
+          <Property Name="AnalyzeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="AnalyzerID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PredictedWH" Type="int" />
+          <Property Name="AnalyzeText" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cabmanagement.dbo.tblCABCodeReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblCABCodeReview">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TaskerID" Type="varchar" MaxLength="50" />
+          <Property Name="CAB_HD_No" Type="int" />
+          <Property Name="InsertDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCABComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="DeveloperID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" Nullable="false" MaxLength="2000" />
+          <Property Name="Status" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblCABHistory">
+          <Key>
+            <PropertyRef Name="CABStatusID" />
+          </Key>
+          <Property Name="CABStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDate" Type="date" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="AnalyzeID" Type="int" Nullable="false" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCABSchedules">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="ScheduleDate" Type="date" Nullable="false" />
+          <Property Name="ScheduledStart" Type="date" />
+          <Property Name="ScheduledEnd" Type="date" />
+          <Property Name="ScheduleNote" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="tblCABStartEnd">
+          <Key>
+            <PropertyRef Name="CABStartEndID" />
+          </Key>
+          <Property Name="CABStartEndID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblCABTaska">
+          <Key>
+            <PropertyRef Name="CAB_Task_ID" />
+          </Key>
+          <Property Name="CAB_Task_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="CabHD_No_Task" Type="int" />
+          <Property Name="CAB_Task_Text" Type="varchar(max)" />
+          <Property Name="CAB_Task_Create_Date" Type="date" />
+          <Property Name="WorkingHours" Type="int" />
+          <Property Name="TaskerID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TaskText" Type="varchar(max)" />
+          <Property Name="DeveloperID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblCABTaskaH">
+          <Key>
+            <PropertyRef Name="CAB_Task_ID" />
+          </Key>
+          <Property Name="CAB_Task_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="CabHD_No_Task" Type="int" />
+          <Property Name="CAB_Task_Text" Type="varchar(max)" />
+          <Property Name="CAB_Task_Create_Date" Type="date" />
+          <Property Name="WorkingHours" Type="int" />
+          <Property Name="TaskerID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TaskText" Type="varchar(max)" />
+          <Property Name="DeveloperID" Type="varchar" MaxLength="50" />
+          <Property Name="InsertDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblCABTesting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="Status_Test" Type="char" MaxLength="2" />
+          <Property Name="Datum_Izmjene" Type="date" />
+          <Property Name="Opis" Type="varchar" MaxLength="2000" />
+          <Property Name="DeveloperID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblCABVoting">
+          <Key>
+            <PropertyRef Name="VoterID" />
+            <PropertyRef Name="CAB_HD_No" />
+          </Key>
+          <Property Name="VoterID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CAB_HD_No" Type="int" Nullable="false" />
+          <Property Name="VoteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CABVote" Type="int" />
+          <Property Name="CABVoteDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblDevelopers">
+          <Key>
+            <PropertyRef Name="DeveloperID" />
+          </Key>
+          <Property Name="DeveloperID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Node" Type="varchar" MaxLength="50" />
+          <Property Name="Ime" Type="varchar" MaxLength="50" />
+          <Property Name="Prezime" Type="varchar" MaxLength="50" />
+          <Property Name="IsVoter" Type="int" />
+          <Property Name="IsAnalyzer" Type="int" />
+          <Property Name="IsTasker" Type="int" />
+          <Property Name="IsDeveloper" Type="int" />
+          <Property Name="IsTester" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDevelopersTimes">
+          <Key>
+            <PropertyRef Name="CAB_Task_ID" />
+          </Key>
+          <Property Name="CAB_Task_ID" Type="int" Nullable="false" />
+          <Property Name="DevelopingHours" Type="numeric" />
+          <Property Name="CAB_HD_No" Type="int" />
+        </EntityType>
+        <EntityType Name="tblStatusi">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDesc" Type="varchar" MaxLength="50" />
+          <Property Name="StatusForBusiness" Type="int" />
+        </EntityType>
+        <EntityType Name="tblTaskHistory">
+          <Key>
+            <PropertyRef Name="TaskHistoryID" />
+          </Key>
+          <Property Name="TaskHistoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_TASK_ID" Type="int" Nullable="false" />
+          <Property Name="DeveloperID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="isAdmin" Type="int" />
+          <Property Name="isExternal" Type="int" />
+        </EntityType>
+        <Association Name="FK_tblAttachments_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
+          <End Role="tblAttachments" Type="cabmanagementModel.Store.tblAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblAttachments">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABAnalysis_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
+          <End Role="tblCABAnalysis" Type="cabmanagementModel.Store.tblCABAnalysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABAnalysis">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABAnalysis_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.Store.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABAnalysis" Type="cabmanagementModel.Store.tblCABAnalysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABAnalysis">
+              <PropertyRef Name="AnalyzerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABComment_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
+          <End Role="tblCABComment" Type="cabmanagementModel.Store.tblCABComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABComment">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABComment_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.Store.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABComment" Type="cabmanagementModel.Store.tblCABComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABComment">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABComment_tblStatusi">
+          <End Role="tblStatusi" Type="cabmanagementModel.Store.tblStatusi" Multiplicity="1" />
+          <End Role="tblCABComment" Type="cabmanagementModel.Store.tblCABComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusi">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="tblCABComment">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABHistory_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
+          <End Role="tblCABHistory" Type="cabmanagementModel.Store.tblCABHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABHistory">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABHistory_tblCABAnalysis">
+          <End Role="tblCABAnalysis" Type="cabmanagementModel.Store.tblCABAnalysis" Multiplicity="1" />
+          <End Role="tblCABHistory" Type="cabmanagementModel.Store.tblCABHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCABAnalysis">
+              <PropertyRef Name="AnalyzeID" />
+            </Principal>
+            <Dependent Role="tblCABHistory">
+              <PropertyRef Name="AnalyzeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABHistory_tblStatusi">
+          <End Role="tblStatusi" Type="cabmanagementModel.Store.tblStatusi" Multiplicity="1" />
+          <End Role="tblCABHistory" Type="cabmanagementModel.Store.tblCABHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusi">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="tblCABHistory">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABStartEnd_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
+          <End Role="tblCABStartEnd" Type="cabmanagementModel.Store.tblCABStartEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABStartEnd">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABTaska_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.Store.tblDevelopers" Multiplicity="0..1" />
+          <End Role="tblCABTaska" Type="cabmanagementModel.Store.tblCABTaska" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABTaska">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABTaska_tblDevelopers1">
+          <End Role="tblDevelopers" Type="cabmanagementModel.Store.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABTaska" Type="cabmanagementModel.Store.tblCABTaska" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABTaska">
+              <PropertyRef Name="TaskerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABTesting_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
+          <End Role="tblCABTesting" Type="cabmanagementModel.Store.tblCABTesting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABTesting">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABVoting_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.Store.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABVoting" Type="cabmanagementModel.Store.tblCABVoting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABVoting">
+              <PropertyRef Name="VoterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cabmanagementModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="cabmanagementEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="CABTimes" EntityType="cabmanagementModel.CABTimes" />
+          <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.tblAttachments" />
+          <EntitySet Name="tblCAB" EntityType="cabmanagementModel.tblCAB" />
+          <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.tblCABAnalysis" />
+          <EntitySet Name="tblCABCodeReview" EntityType="cabmanagementModel.tblCABCodeReview" />
+          <EntitySet Name="tblCABComment" EntityType="cabmanagementModel.tblCABComment" />
+          <EntitySet Name="tblCABHistory" EntityType="cabmanagementModel.tblCABHistory" />
+          <EntitySet Name="tblCABSchedules" EntityType="cabmanagementModel.tblCABSchedules" />
+          <EntitySet Name="tblCABStartEnd" EntityType="cabmanagementModel.tblCABStartEnd" />
+          <EntitySet Name="tblCABTaska" EntityType="cabmanagementModel.tblCABTaska" />
+          <EntitySet Name="tblCABTaskaH" EntityType="cabmanagementModel.tblCABTaskaH" />
+          <EntitySet Name="tblCABTesting" EntityType="cabmanagementModel.tblCABTesting" />
+          <EntitySet Name="tblCABVoting" EntityType="cabmanagementModel.tblCABVoting" />
+          <EntitySet Name="tblDevelopers" EntityType="cabmanagementModel.tblDevelopers" />
+          <EntitySet Name="tblDevelopersTimes" EntityType="cabmanagementModel.tblDevelopersTimes" />
+          <EntitySet Name="tblStatusi" EntityType="cabmanagementModel.tblStatusi" />
+          <EntitySet Name="tblTaskHistory" EntityType="cabmanagementModel.tblTaskHistory" />
+          <EntitySet Name="tblUser" EntityType="cabmanagementModel.tblUser" />
+          <AssociationSet Name="FK_tblAttachments_tblCAB" Association="cabmanagementModel.FK_tblAttachments_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblAttachments" EntitySet="tblAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABAnalysis_tblCAB" Association="cabmanagementModel.FK_tblCABAnalysis_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABAnalysis" EntitySet="tblCABAnalysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABComment_tblCAB" Association="cabmanagementModel.FK_tblCABComment_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABComment" EntitySet="tblCABComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABHistory_tblCAB" Association="cabmanagementModel.FK_tblCABHistory_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABHistory" EntitySet="tblCABHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABStartEnd_tblCAB" Association="cabmanagementModel.FK_tblCABStartEnd_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABStartEnd" EntitySet="tblCABStartEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABTesting_tblCAB" Association="cabmanagementModel.FK_tblCABTesting_tblCAB">
+            <End Role="tblCAB" EntitySet="tblCAB" />
+            <End Role="tblCABTesting" EntitySet="tblCABTesting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABAnalysis_tblDevelopers" Association="cabmanagementModel.FK_tblCABAnalysis_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABAnalysis" EntitySet="tblCABAnalysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABHistory_tblCABAnalysis" Association="cabmanagementModel.FK_tblCABHistory_tblCABAnalysis">
+            <End Role="tblCABAnalysis" EntitySet="tblCABAnalysis" />
+            <End Role="tblCABHistory" EntitySet="tblCABHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABComment_tblDevelopers" Association="cabmanagementModel.FK_tblCABComment_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABComment" EntitySet="tblCABComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABComment_tblStatusi" Association="cabmanagementModel.FK_tblCABComment_tblStatusi">
+            <End Role="tblStatusi" EntitySet="tblStatusi" />
+            <End Role="tblCABComment" EntitySet="tblCABComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABHistory_tblStatusi" Association="cabmanagementModel.FK_tblCABHistory_tblStatusi">
+            <End Role="tblStatusi" EntitySet="tblStatusi" />
+            <End Role="tblCABHistory" EntitySet="tblCABHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABTaska_tblDevelopers" Association="cabmanagementModel.FK_tblCABTaska_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABTaska" EntitySet="tblCABTaska" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABTaska_tblDevelopers1" Association="cabmanagementModel.FK_tblCABTaska_tblDevelopers1">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABTaska" EntitySet="tblCABTaska" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCABVoting_tblDevelopers" Association="cabmanagementModel.FK_tblCABVoting_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblCABVoting" EntitySet="tblCABVoting" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CABTimes">
+          <Key>
+            <PropertyRef Name="CAB_HD_No" />
+          </Key>
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="ActualAnalyzeTime" Type="Int32" />
+          <Property Name="ActualTaskingTime" Type="Int32" />
+          <Property Name="ScheduledTaskingStart" Type="DateTime" Precision="0" />
+          <Property Name="ScheduledTaskingEnd" Type="DateTime" Precision="0" />
+          <Property Name="PredictedWHForTesting" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblAttachments">
+          <Key>
+            <PropertyRef Name="AttachID" />
+          </Key>
+          <Property Name="AttachID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="Attach_Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblAttachments_tblCAB" FromRole="tblAttachments" ToRole="tblCAB" />
+        </EntityType>
+        <EntityType Name="tblCAB">
+          <Key>
+            <PropertyRef Name="CAB_HD_No" />
+          </Key>
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="CAB_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_Type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_HD_Date" Type="DateTime" Precision="0" />
+          <Property Name="CAB_HD_Title" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_Sender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_Priority" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_Note" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Developer_Comment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_Department" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblAttachments" Relationship="cabmanagementModel.FK_tblAttachments_tblCAB" FromRole="tblCAB" ToRole="tblAttachments" />
+          <NavigationProperty Name="tblCABAnalysis" Relationship="cabmanagementModel.FK_tblCABAnalysis_tblCAB" FromRole="tblCAB" ToRole="tblCABAnalysis" />
+          <NavigationProperty Name="tblCABComment" Relationship="cabmanagementModel.FK_tblCABComment_tblCAB" FromRole="tblCAB" ToRole="tblCABComment" />
+          <NavigationProperty Name="tblCABHistory" Relationship="cabmanagementModel.FK_tblCABHistory_tblCAB" FromRole="tblCAB" ToRole="tblCABHistory" />
+          <NavigationProperty Name="tblCABStartEnd" Relationship="cabmanagementModel.FK_tblCABStartEnd_tblCAB" FromRole="tblCAB" ToRole="tblCABStartEnd" />
+          <NavigationProperty Name="tblCABTesting" Relationship="cabmanagementModel.FK_tblCABTesting_tblCAB" FromRole="tblCAB" ToRole="tblCABTesting" />
+        </EntityType>
+        <EntityType Name="tblCABAnalysis">
+          <Key>
+            <PropertyRef Name="AnalyzeID" />
+          </Key>
+          <Property Name="AnalyzeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="AnalyzerID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PredictedWH" Type="Int32" />
+          <Property Name="AnalyzeText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABAnalysis_tblCAB" FromRole="tblCABAnalysis" ToRole="tblCAB" />
+          <NavigationProperty Name="tblDevelopers" Relationship="cabmanagementModel.FK_tblCABAnalysis_tblDevelopers" FromRole="tblCABAnalysis" ToRole="tblDevelopers" />
+          <NavigationProperty Name="tblCABHistory" Relationship="cabmanagementModel.FK_tblCABHistory_tblCABAnalysis" FromRole="tblCABAnalysis" ToRole="tblCABHistory" />
+        </EntityType>
+        <EntityType Name="tblCABCodeReview">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskerID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_HD_No" Type="Int32" />
+          <Property Name="InsertDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblCABComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="DeveloperID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABComment_tblCAB" FromRole="tblCABComment" ToRole="tblCAB" />
+          <NavigationProperty Name="tblDevelopers" Relationship="cabmanagementModel.FK_tblCABComment_tblDevelopers" FromRole="tblCABComment" ToRole="tblDevelopers" />
+          <NavigationProperty Name="tblStatusi" Relationship="cabmanagementModel.FK_tblCABComment_tblStatusi" FromRole="tblCABComment" ToRole="tblStatusi" />
+        </EntityType>
+        <EntityType Name="tblCABHistory">
+          <Key>
+            <PropertyRef Name="CABStatusID" />
+          </Key>
+          <Property Name="CABStatusID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDate" Type="DateTime" Precision="0" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="AnalyzeID" Type="Int32" Nullable="false" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABHistory_tblCAB" FromRole="tblCABHistory" ToRole="tblCAB" />
+          <NavigationProperty Name="tblCABAnalysis" Relationship="cabmanagementModel.FK_tblCABHistory_tblCABAnalysis" FromRole="tblCABHistory" ToRole="tblCABAnalysis" />
+          <NavigationProperty Name="tblStatusi" Relationship="cabmanagementModel.FK_tblCABHistory_tblStatusi" FromRole="tblCABHistory" ToRole="tblStatusi" />
+        </EntityType>
+        <EntityType Name="tblCABSchedules">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ScheduledStart" Type="DateTime" Precision="0" />
+          <Property Name="ScheduledEnd" Type="DateTime" Precision="0" />
+          <Property Name="ScheduleNote" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblCABStartEnd">
+          <Key>
+            <PropertyRef Name="CABStartEndID" />
+          </Key>
+          <Property Name="CABStartEndID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABStartEnd_tblCAB" FromRole="tblCABStartEnd" ToRole="tblCAB" />
+        </EntityType>
+        <EntityType Name="tblCABTaska">
+          <Key>
+            <PropertyRef Name="CAB_Task_ID" />
+          </Key>
+          <Property Name="CAB_Task_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="CabHD_No_Task" Type="Int32" />
+          <Property Name="CAB_Task_Text" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_Task_Create_Date" Type="DateTime" Precision="0" />
+          <Property Name="WorkingHours" Type="Int32" />
+          <Property Name="TaskerID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TaskText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DeveloperID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblDevelopers" Relationship="cabmanagementModel.FK_tblCABTaska_tblDevelopers" FromRole="tblCABTaska" ToRole="tblDevelopers" />
+          <NavigationProperty Name="tblDevelopers1" Relationship="cabmanagementModel.FK_tblCABTaska_tblDevelopers1" FromRole="tblCABTaska" ToRole="tblDevelopers" />
+        </EntityType>
+        <EntityType Name="tblCABTaskaH">
+          <Key>
+            <PropertyRef Name="CAB_Task_ID" />
+          </Key>
+          <Property Name="CAB_Task_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="CabHD_No_Task" Type="Int32" />
+          <Property Name="CAB_Task_Text" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_Task_Create_Date" Type="DateTime" Precision="0" />
+          <Property Name="WorkingHours" Type="Int32" />
+          <Property Name="TaskerID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TaskText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DeveloperID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="InsertDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tblCABTesting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="Status_Test" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="Datum_Izmjene" Type="DateTime" Precision="0" />
+          <Property Name="Opis" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="DeveloperID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABTesting_tblCAB" FromRole="tblCABTesting" ToRole="tblCAB" />
+        </EntityType>
+        <EntityType Name="tblCABVoting">
+          <Key>
+            <PropertyRef Name="VoterID" />
+            <PropertyRef Name="CAB_HD_No" />
+          </Key>
+          <Property Name="VoterID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
+          <Property Name="VoteID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CABVote" Type="Int32" />
+          <Property Name="CABVoteDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblDevelopers" Relationship="cabmanagementModel.FK_tblCABVoting_tblDevelopers" FromRole="tblCABVoting" ToRole="tblDevelopers" />
+        </EntityType>
+        <EntityType Name="tblDevelopers">
+          <Key>
+            <PropertyRef Name="DeveloperID" />
+          </Key>
+          <Property Name="DeveloperID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Node" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Ime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IsVoter" Type="Int32" />
+          <Property Name="IsAnalyzer" Type="Int32" />
+          <Property Name="IsTasker" Type="Int32" />
+          <Property Name="IsDeveloper" Type="Int32" />
+          <Property Name="IsTester" Type="Int32" />
+          <NavigationProperty Name="tblCABAnalysis" Relationship="cabmanagementModel.FK_tblCABAnalysis_tblDevelopers" FromRole="tblDevelopers" ToRole="tblCABAnalysis" />
+          <NavigationProperty Name="tblCABComment" Relationship="cabmanagementModel.FK_tblCABComment_tblDevelopers" FromRole="tblDevelopers" ToRole="tblCABComment" />
+          <NavigationProperty Name="tblCABTaska" Relationship="cabmanagementModel.FK_tblCABTaska_tblDevelopers" FromRole="tblDevelopers" ToRole="tblCABTaska" />
+          <NavigationProperty Name="tblCABTaska1" Relationship="cabmanagementModel.FK_tblCABTaska_tblDevelopers1" FromRole="tblDevelopers" ToRole="tblCABTaska" />
+          <NavigationProperty Name="tblCABVoting" Relationship="cabmanagementModel.FK_tblCABVoting_tblDevelopers" FromRole="tblDevelopers" ToRole="tblCABVoting" />
+        </EntityType>
+        <EntityType Name="tblDevelopersTimes">
+          <Key>
+            <PropertyRef Name="CAB_Task_ID" />
+          </Key>
+          <Property Name="CAB_Task_ID" Type="Int32" Nullable="false" />
+          <Property Name="DevelopingHours" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CAB_HD_No" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblStatusi">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDesc" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="StatusForBusiness" Type="Int32" />
+          <NavigationProperty Name="tblCABComment" Relationship="cabmanagementModel.FK_tblCABComment_tblStatusi" FromRole="tblStatusi" ToRole="tblCABComment" />
+          <NavigationProperty Name="tblCABHistory" Relationship="cabmanagementModel.FK_tblCABHistory_tblStatusi" FromRole="tblStatusi" ToRole="tblCABHistory" />
+        </EntityType>
+        <EntityType Name="tblTaskHistory">
+          <Key>
+            <PropertyRef Name="TaskHistoryID" />
+          </Key>
+          <Property Name="TaskHistoryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CAB_TASK_ID" Type="Int32" Nullable="false" />
+          <Property Name="DeveloperID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="isAdmin" Type="Int32" />
+          <Property Name="isExternal" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_tblAttachments_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
+          <End Role="tblAttachments" Type="cabmanagementModel.tblAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblAttachments">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABAnalysis_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
+          <End Role="tblCABAnalysis" Type="cabmanagementModel.tblCABAnalysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABAnalysis">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABComment_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
+          <End Role="tblCABComment" Type="cabmanagementModel.tblCABComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABComment">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABHistory_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
+          <End Role="tblCABHistory" Type="cabmanagementModel.tblCABHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABHistory">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABStartEnd_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
+          <End Role="tblCABStartEnd" Type="cabmanagementModel.tblCABStartEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABStartEnd">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABTesting_tblCAB">
+          <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
+          <End Role="tblCABTesting" Type="cabmanagementModel.tblCABTesting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCAB">
+              <PropertyRef Name="CAB_HD_No" />
+            </Principal>
+            <Dependent Role="tblCABTesting">
+              <PropertyRef Name="CAB_HD_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABAnalysis_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABAnalysis" Type="cabmanagementModel.tblCABAnalysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABAnalysis">
+              <PropertyRef Name="AnalyzerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABHistory_tblCABAnalysis">
+          <End Role="tblCABAnalysis" Type="cabmanagementModel.tblCABAnalysis" Multiplicity="1" />
+          <End Role="tblCABHistory" Type="cabmanagementModel.tblCABHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCABAnalysis">
+              <PropertyRef Name="AnalyzeID" />
+            </Principal>
+            <Dependent Role="tblCABHistory">
+              <PropertyRef Name="AnalyzeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABComment_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABComment" Type="cabmanagementModel.tblCABComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABComment">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABComment_tblStatusi">
+          <End Role="tblStatusi" Type="cabmanagementModel.tblStatusi" Multiplicity="1" />
+          <End Role="tblCABComment" Type="cabmanagementModel.tblCABComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusi">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="tblCABComment">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABHistory_tblStatusi">
+          <End Role="tblStatusi" Type="cabmanagementModel.tblStatusi" Multiplicity="1" />
+          <End Role="tblCABHistory" Type="cabmanagementModel.tblCABHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusi">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="tblCABHistory">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABTaska_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="0..1" />
+          <End Role="tblCABTaska" Type="cabmanagementModel.tblCABTaska" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABTaska">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABTaska_tblDevelopers1">
+          <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABTaska" Type="cabmanagementModel.tblCABTaska" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABTaska">
+              <PropertyRef Name="TaskerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCABVoting_tblDevelopers">
+          <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
+          <End Role="tblCABVoting" Type="cabmanagementModel.tblCABVoting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="DeveloperID" />
+            </Principal>
+            <Dependent Role="tblCABVoting">
+              <PropertyRef Name="VoterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities">
+          <EntitySetMapping Name="CABTimes">
+            <EntityTypeMapping TypeName="cabmanagementModel.CABTimes">
+              <MappingFragment StoreEntitySet="CABTimes">
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="ActualAnalyzeTime" ColumnName="ActualAnalyzeTime" />
+                <ScalarProperty Name="ActualTaskingTime" ColumnName="ActualTaskingTime" />
+                <ScalarProperty Name="ScheduledTaskingStart" ColumnName="ScheduledTaskingStart" />
+                <ScalarProperty Name="ScheduledTaskingEnd" ColumnName="ScheduledTaskingEnd" />
+                <ScalarProperty Name="PredictedWHForTesting" ColumnName="PredictedWHForTesting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAttachments">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblAttachments">
+              <MappingFragment StoreEntitySet="tblAttachments">
+                <ScalarProperty Name="AttachID" ColumnName="AttachID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="Attach_Address" ColumnName="Attach_Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCAB">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCAB">
+              <MappingFragment StoreEntitySet="tblCAB">
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="CAB_Id" ColumnName="CAB_Id" />
+                <ScalarProperty Name="CAB_Type" ColumnName="CAB_Type" />
+                <ScalarProperty Name="CAB_HD_Date" ColumnName="CAB_HD_Date" />
+                <ScalarProperty Name="CAB_HD_Title" ColumnName="CAB_HD_Title" />
+                <ScalarProperty Name="CAB_Sender" ColumnName="CAB_Sender" />
+                <ScalarProperty Name="CAB_Priority" ColumnName="CAB_Priority" />
+                <ScalarProperty Name="CAB_Note" ColumnName="CAB_Note" />
+                <ScalarProperty Name="Developer_Comment" ColumnName="Developer_Comment" />
+                <ScalarProperty Name="CAB_Department" ColumnName="CAB_Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABAnalysis">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABAnalysis">
+              <MappingFragment StoreEntitySet="tblCABAnalysis">
+                <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="AnalyzerID" ColumnName="AnalyzerID" />
+                <ScalarProperty Name="PredictedWH" ColumnName="PredictedWH" />
+                <ScalarProperty Name="AnalyzeText" ColumnName="AnalyzeText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABCodeReview">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABCodeReview">
+              <MappingFragment StoreEntitySet="tblCABCodeReview">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TaskerID" ColumnName="TaskerID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABComment">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABComment">
+              <MappingFragment StoreEntitySet="tblCABComment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABHistory">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABHistory">
+              <MappingFragment StoreEntitySet="tblCABHistory">
+                <ScalarProperty Name="CABStatusID" ColumnName="CABStatusID" />
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABSchedules">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABSchedules">
+              <MappingFragment StoreEntitySet="tblCABSchedules">
+                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+                <ScalarProperty Name="ScheduledStart" ColumnName="ScheduledStart" />
+                <ScalarProperty Name="ScheduledEnd" ColumnName="ScheduledEnd" />
+                <ScalarProperty Name="ScheduleNote" ColumnName="ScheduleNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABStartEnd">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABStartEnd">
+              <MappingFragment StoreEntitySet="tblCABStartEnd">
+                <ScalarProperty Name="CABStartEndID" ColumnName="CABStartEndID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABTaska">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABTaska">
+              <MappingFragment StoreEntitySet="tblCABTaska">
+                <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="CabHD_No_Task" ColumnName="CabHD_No_Task" />
+                <ScalarProperty Name="CAB_Task_Text" ColumnName="CAB_Task_Text" />
+                <ScalarProperty Name="CAB_Task_Create_Date" ColumnName="CAB_Task_Create_Date" />
+                <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+                <ScalarProperty Name="TaskerID" ColumnName="TaskerID" />
+                <ScalarProperty Name="TaskText" ColumnName="TaskText" />
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABTaskaH">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABTaskaH">
+              <MappingFragment StoreEntitySet="tblCABTaskaH">
+                <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="CabHD_No_Task" ColumnName="CabHD_No_Task" />
+                <ScalarProperty Name="CAB_Task_Text" ColumnName="CAB_Task_Text" />
+                <ScalarProperty Name="CAB_Task_Create_Date" ColumnName="CAB_Task_Create_Date" />
+                <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+                <ScalarProperty Name="TaskerID" ColumnName="TaskerID" />
+                <ScalarProperty Name="TaskText" ColumnName="TaskText" />
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABTesting">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABTesting">
+              <MappingFragment StoreEntitySet="tblCABTesting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="Status_Test" ColumnName="Status_Test" />
+                <ScalarProperty Name="Datum_Izmjene" ColumnName="Datum_Izmjene" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABVoting">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABVoting">
+              <MappingFragment StoreEntitySet="tblCABVoting">
+                <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="VoteID" ColumnName="VoteID" />
+                <ScalarProperty Name="CABVote" ColumnName="CABVote" />
+                <ScalarProperty Name="CABVoteDate" ColumnName="CABVoteDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDevelopers">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblDevelopers">
+              <MappingFragment StoreEntitySet="tblDevelopers">
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+                <ScalarProperty Name="Node" ColumnName="Node" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="IsVoter" ColumnName="IsVoter" />
+                <ScalarProperty Name="IsAnalyzer" ColumnName="IsAnalyzer" />
+                <ScalarProperty Name="IsTasker" ColumnName="IsTasker" />
+                <ScalarProperty Name="IsDeveloper" ColumnName="IsDeveloper" />
+                <ScalarProperty Name="IsTester" ColumnName="IsTester" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDevelopersTimes">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblDevelopersTimes">
+              <MappingFragment StoreEntitySet="tblDevelopersTimes">
+                <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+                <ScalarProperty Name="DevelopingHours" ColumnName="DevelopingHours" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStatusi">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblStatusi">
+              <MappingFragment StoreEntitySet="tblStatusi">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusDesc" ColumnName="StatusDesc" />
+                <ScalarProperty Name="StatusForBusiness" ColumnName="StatusForBusiness" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTaskHistory">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblTaskHistory">
+              <MappingFragment StoreEntitySet="tblTaskHistory">
+                <ScalarProperty Name="TaskHistoryID" ColumnName="TaskHistoryID" />
+                <ScalarProperty Name="CAB_TASK_ID" ColumnName="CAB_TASK_ID" />
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="isExternal" ColumnName="isExternal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

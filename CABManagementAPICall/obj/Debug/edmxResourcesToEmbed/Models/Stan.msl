@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cabmanagementModel1StoreContainer" CdmEntityContainer="cabmanagementEntities1">
+    <EntitySetMapping Name="Stan">
+      <EntityTypeMapping TypeName="cabmanagementModel1.Stan">
+        <MappingFragment StoreEntitySet="Stan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="lokacija" ColumnName="lokacija" />
+          <ScalarProperty Name="namjesten" ColumnName="namjesten" />
+          <ScalarProperty Name="brojSoba" ColumnName="brojSoba" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cijena" ColumnName="cijena" />
+          <ScalarProperty Name="dodatnoOpis" ColumnName="dodatnoOpis" />
+          <ScalarProperty Name="grijanje" ColumnName="grijanje" />
+          <ScalarProperty Name="balkon" ColumnName="balkon" />
+          <ScalarProperty Name="kucaZgrada" ColumnName="kucaZgrada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

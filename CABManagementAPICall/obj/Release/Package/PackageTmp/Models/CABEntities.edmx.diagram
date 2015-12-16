@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e641defd27644571a3690139ee61af6a" Name="Diagram1">
+        <EntityTypeShape EntityType="cabmanagementModel.CABTimes" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblAttachments" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCAB" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABAnalysis" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABCodeReview" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABComment" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABHistory" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABSchedules" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABStartEnd" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABTaska" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABTaskaH" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABTesting" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblCABVoting" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblDevelopers" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblDevelopersTimes" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblStatusi" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblTaskHistory" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cabmanagementModel.tblUser" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblAttachments_tblCAB" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABAnalysis_tblCAB" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABComment_tblCAB" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABHistory_tblCAB" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABStartEnd_tblCAB" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABTesting_tblCAB" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABAnalysis_tblDevelopers" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABHistory_tblCABAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABComment_tblDevelopers" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABComment_tblStatusi" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABHistory_tblStatusi" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABTaska_tblDevelopers" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABTaska_tblDevelopers1" ManuallyRouted="false" />
+        <AssociationConnector Association="cabmanagementModel.FK_tblCABVoting_tblDevelopers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

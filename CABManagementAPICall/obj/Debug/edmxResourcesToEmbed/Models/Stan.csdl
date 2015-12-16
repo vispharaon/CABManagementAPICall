@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cabmanagementModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="cabmanagementEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Stan" EntityType="cabmanagementModel1.Stan" />
+  </EntityContainer>
+  <EntityType Name="Stan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="lokacija" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="namjesten" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="brojSoba" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="telefon" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="cijena" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dodatnoOpis" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="grijanje" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="balkon" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="kucaZgrada" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

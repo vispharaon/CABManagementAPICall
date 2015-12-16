@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cabmanagementModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="cabmanagementModel1StoreContainer">
+    <EntitySet Name="Stan" EntityType="cabmanagementModel1.Store.Stan" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Stan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="lokacija" Type="varchar" MaxLength="25" />
+    <Property Name="namjesten" Type="varchar" MaxLength="30" />
+    <Property Name="brojSoba" Type="varchar" MaxLength="30" />
+    <Property Name="telefon" Type="varchar" MaxLength="30" />
+    <Property Name="email" Type="varchar" MaxLength="30" />
+    <Property Name="cijena" Type="decimal" Scale="2" />
+    <Property Name="dodatnoOpis" Type="varchar" MaxLength="100" />
+    <Property Name="grijanje" Type="varchar" MaxLength="30" />
+    <Property Name="balkon" Type="varchar" MaxLength="30" />
+    <Property Name="kucaZgrada" Type="varchar" MaxLength="30" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities">
+    <EntitySetMapping Name="CABTimes">
+      <EntityTypeMapping TypeName="cabmanagementModel.CABTimes">
+        <MappingFragment StoreEntitySet="CABTimes">
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="ActualAnalyzeTime" ColumnName="ActualAnalyzeTime" />
+          <ScalarProperty Name="ActualTaskingTime" ColumnName="ActualTaskingTime" />
+          <ScalarProperty Name="ScheduledTaskingStart" ColumnName="ScheduledTaskingStart" />
+          <ScalarProperty Name="ScheduledTaskingEnd" ColumnName="ScheduledTaskingEnd" />
+          <ScalarProperty Name="PredictedWHForTesting" ColumnName="PredictedWHForTesting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAttachments">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblAttachments">
+        <MappingFragment StoreEntitySet="tblAttachments">
+          <ScalarProperty Name="AttachID" ColumnName="AttachID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="Attach_Address" ColumnName="Attach_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCAB">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCAB">
+        <MappingFragment StoreEntitySet="tblCAB">
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="CAB_Id" ColumnName="CAB_Id" />
+          <ScalarProperty Name="CAB_Type" ColumnName="CAB_Type" />
+          <ScalarProperty Name="CAB_HD_Date" ColumnName="CAB_HD_Date" />
+          <ScalarProperty Name="CAB_HD_Title" ColumnName="CAB_HD_Title" />
+          <ScalarProperty Name="CAB_Sender" ColumnName="CAB_Sender" />
+          <ScalarProperty Name="CAB_Priority" ColumnName="CAB_Priority" />
+          <ScalarProperty Name="CAB_Note" ColumnName="CAB_Note" />
+          <ScalarProperty Name="Developer_Comment" ColumnName="Developer_Comment" />
+          <ScalarProperty Name="CAB_Department" ColumnName="CAB_Department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABAnalysis">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABAnalysis">
+        <MappingFragment StoreEntitySet="tblCABAnalysis">
+          <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="AnalyzerID" ColumnName="AnalyzerID" />
+          <ScalarProperty Name="PredictedWH" ColumnName="PredictedWH" />
+          <ScalarProperty Name="AnalyzeText" ColumnName="AnalyzeText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABCodeReview">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABCodeReview">
+        <MappingFragment StoreEntitySet="tblCABCodeReview">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TaskerID" ColumnName="TaskerID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABComment">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABComment">
+        <MappingFragment StoreEntitySet="tblCABComment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABHistory">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABHistory">
+        <MappingFragment StoreEntitySet="tblCABHistory">
+          <ScalarProperty Name="CABStatusID" ColumnName="CABStatusID" />
+          <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABSchedules">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABSchedules">
+        <MappingFragment StoreEntitySet="tblCABSchedules">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+          <ScalarProperty Name="ScheduledStart" ColumnName="ScheduledStart" />
+          <ScalarProperty Name="ScheduledEnd" ColumnName="ScheduledEnd" />
+          <ScalarProperty Name="ScheduleNote" ColumnName="ScheduleNote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABStartEnd">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABStartEnd">
+        <MappingFragment StoreEntitySet="tblCABStartEnd">
+          <ScalarProperty Name="CABStartEndID" ColumnName="CABStartEndID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABTaska">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABTaska">
+        <MappingFragment StoreEntitySet="tblCABTaska">
+          <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="CabHD_No_Task" ColumnName="CabHD_No_Task" />
+          <ScalarProperty Name="CAB_Task_Text" ColumnName="CAB_Task_Text" />
+          <ScalarProperty Name="CAB_Task_Create_Date" ColumnName="CAB_Task_Create_Date" />
+          <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+          <ScalarProperty Name="TaskerID" ColumnName="TaskerID" />
+          <ScalarProperty Name="TaskText" ColumnName="TaskText" />
+          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABTaskaH">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABTaskaH">
+        <MappingFragment StoreEntitySet="tblCABTaskaH">
+          <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="CabHD_No_Task" ColumnName="CabHD_No_Task" />
+          <ScalarProperty Name="CAB_Task_Text" ColumnName="CAB_Task_Text" />
+          <ScalarProperty Name="CAB_Task_Create_Date" ColumnName="CAB_Task_Create_Date" />
+          <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+          <ScalarProperty Name="TaskerID" ColumnName="TaskerID" />
+          <ScalarProperty Name="TaskText" ColumnName="TaskText" />
+          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABTesting">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABTesting">
+        <MappingFragment StoreEntitySet="tblCABTesting">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="Status_Test" ColumnName="Status_Test" />
+          <ScalarProperty Name="Datum_Izmjene" ColumnName="Datum_Izmjene" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABVoting">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABVoting">
+        <MappingFragment StoreEntitySet="tblCABVoting">
+          <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="VoteID" ColumnName="VoteID" />
+          <ScalarProperty Name="CABVote" ColumnName="CABVote" />
+          <ScalarProperty Name="CABVoteDate" ColumnName="CABVoteDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDevelopers">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblDevelopers">
+        <MappingFragment StoreEntitySet="tblDevelopers">
+          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+          <ScalarProperty Name="Node" ColumnName="Node" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="IsVoter" ColumnName="IsVoter" />
+          <ScalarProperty Name="IsAnalyzer" ColumnName="IsAnalyzer" />
+          <ScalarProperty Name="IsTasker" ColumnName="IsTasker" />
+          <ScalarProperty Name="IsDeveloper" ColumnName="IsDeveloper" />
+          <ScalarProperty Name="IsTester" ColumnName="IsTester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDevelopersTimes">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblDevelopersTimes">
+        <MappingFragment StoreEntitySet="tblDevelopersTimes">
+          <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+          <ScalarProperty Name="DevelopingHours" ColumnName="DevelopingHours" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStatusi">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblStatusi">
+        <MappingFragment StoreEntitySet="tblStatusi">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="StatusDesc" ColumnName="StatusDesc" />
+          <ScalarProperty Name="StatusForBusiness" ColumnName="StatusForBusiness" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTaskHistory">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblTaskHistory">
+        <MappingFragment StoreEntitySet="tblTaskHistory">
+          <ScalarProperty Name="TaskHistoryID" ColumnName="TaskHistoryID" />
+          <ScalarProperty Name="CAB_TASK_ID" ColumnName="CAB_TASK_ID" />
+          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUser">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="isExternal" ColumnName="isExternal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
