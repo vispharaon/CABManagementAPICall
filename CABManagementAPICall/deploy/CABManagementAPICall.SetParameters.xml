@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/CABManagementAPICall_deploy" />
+  <setParameter name="cabmanagementEntities-Web.config Connection String" value="metadata=res://*/Models.CABEntities.csdl|res://*/Models.CABEntities.ssdl|res://*/Models.CABEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=cabmanagement.mssql.somee.com;initial catalog=cabmanagement;persist security info=True;user id=vispharaon;password=cabbazapodataka;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-CABManagementAPICall-20150413140953;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-CABManagementAPICall-20150413140953.mdf" />
+  <setParameter name="cabmanagementEntities1-Web.config Connection String" value="metadata=res://*/Models.Stan.csdl|res://*/Models.Stan.ssdl|res://*/Models.Stan.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=cabmanagement.mssql.somee.com;initial catalog=cabmanagement;persist security info=True;user id=vispharaon;password=cabbazapodataka;multipleactiveresultsets=True;application name=EntityFramework&quot;" />
+</parameters>

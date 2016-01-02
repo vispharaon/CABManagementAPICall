@@ -16,10 +16,40 @@ namespace CABManagementAPICall.Controllers
     {
         private cabmanagementEntities db = new cabmanagementEntities();
 
-        // GET api/CAB
-        public IEnumerable<tblCAB> GettblCABs()
-        {
-            return db.tblCAB.AsEnumerable();
+        //// GET api/CAB
+        //public IEnumerable<tblCAB> GettblCABs()
+        //{
+        //    return db.tblCAB.AsEnumerable();
+        //}
+
+        public IEnumerable<object> GettblCABs()
+        {   
+            //todo: Dodati join sa tabelom tblStatusi i dodati uslov za tblCABHistory da uzima samo zadnji CABStatusId za CAB_HD_No.
+            var listAllCABs = db.tblCAB.Join(db.tblCABHistory, tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
+                new{                    
+                    CAB_HD_No = tc.CAB_HD_No,
+                    CAB_HD_Title = tc.CAB_HD_Title,
+                    CAB_Type = tc.CAB_Type,
+                    CAB_HD_Date = tc.CAB_HD_Date,
+                    CAB_Sender = tc.CAB_Sender,
+                    CAB_Priority = tc.CAB_Priority,
+                    CAB_Department = tc.CAB_Department,
+                    StatusID = tch.StatusID,
+                    StatusDate = tch.StatusDate
+           }).Join(db.tblStatusi, all => all.StatusID, ts => ts.StatusID, (all, ts) =>
+               new {
+                   CAB_HD_No = all.CAB_HD_No,
+                   CAB_HD_Title = all.CAB_HD_Title,
+                   CAB_Type = all.CAB_Type,
+                   CAB_HD_Date = all.CAB_HD_Date,
+                   CAB_Sender = all.CAB_Sender,
+                   CAB_Priority = all.CAB_Priority,
+                   CAB_Department = all.CAB_Department,
+                   StatusName = ts.StatusDesc,
+                   StatusDate = all.StatusDate
+               });
+
+            return listAllCABs.AsEnumerable();
         }
 
         // GET api/CAB/5

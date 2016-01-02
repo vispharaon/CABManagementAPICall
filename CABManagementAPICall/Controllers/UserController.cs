@@ -34,6 +34,18 @@ namespace CABManagementAPICall.Controllers
             return tbluser;
         }
 
+        // GET api/Default1/"username"
+        public tblUser GettblUser(string username, string password)
+        {
+            tblUser tbluser = db.tblUser.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+            if (tbluser == null)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, "Nije pronađen korisnik sa unesenim podacima."));                
+            }
+
+            return tbluser;
+        }
+
         // PUT api/Default1/5
         public HttpResponseMessage PuttblUser(int id, tblUser tbluser)
         {
