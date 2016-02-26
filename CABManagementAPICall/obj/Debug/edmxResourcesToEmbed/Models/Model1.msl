@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities3">
+  <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities2">
     <EntitySetMapping Name="CABTimes">
       <EntityTypeMapping TypeName="cabmanagementModel.CABTimes">
         <MappingFragment StoreEntitySet="CABTimes">
@@ -25,7 +25,6 @@
       <EntityTypeMapping TypeName="cabmanagementModel.tblAttachments">
         <MappingFragment StoreEntitySet="tblAttachments">
           <ScalarProperty Name="AttachID" ColumnName="AttachID" />
-          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
           <ScalarProperty Name="Attach_Address" ColumnName="Attach_Address" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -50,8 +49,6 @@
       <EntityTypeMapping TypeName="cabmanagementModel.tblCABAnalysis">
         <MappingFragment StoreEntitySet="tblCABAnalysis">
           <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
-          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
-          <ScalarProperty Name="AnalyzerID" ColumnName="AnalyzerID" />
           <ScalarProperty Name="PredictedWH" ColumnName="PredictedWH" />
           <ScalarProperty Name="AnalyzeText" ColumnName="AnalyzeText" />
         </MappingFragment>
@@ -71,10 +68,7 @@
       <EntityTypeMapping TypeName="cabmanagementModel.tblCABComment">
         <MappingFragment StoreEntitySet="tblCABComment">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
-          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
           <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
@@ -85,9 +79,6 @@
         <MappingFragment StoreEntitySet="tblCABHistory">
           <ScalarProperty Name="CABStatusID" ColumnName="CABStatusID" />
           <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
-          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-          <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
-          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -107,7 +98,6 @@
       <EntityTypeMapping TypeName="cabmanagementModel.tblCABStartEnd">
         <MappingFragment StoreEntitySet="tblCABStartEnd">
           <ScalarProperty Name="CABStartEndID" ColumnName="CABStartEndID" />
-          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
         </MappingFragment>
@@ -122,9 +112,7 @@
           <ScalarProperty Name="CAB_Task_Text" ColumnName="CAB_Task_Text" />
           <ScalarProperty Name="CAB_Task_Create_Date" ColumnName="CAB_Task_Create_Date" />
           <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
-          <ScalarProperty Name="TaskerID" ColumnName="TaskerID" />
           <ScalarProperty Name="TaskText" ColumnName="TaskText" />
-          <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -148,7 +136,6 @@
       <EntityTypeMapping TypeName="cabmanagementModel.tblCABTesting">
         <MappingFragment StoreEntitySet="tblCABTesting">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
           <ScalarProperty Name="Status_Test" ColumnName="Status_Test" />
           <ScalarProperty Name="Datum_Izmjene" ColumnName="Datum_Izmjene" />
           <ScalarProperty Name="Opis" ColumnName="Opis" />
@@ -230,5 +217,110 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="FK_tblAttachments_tblCAB" TypeName="cabmanagementModel.FK_tblAttachments_tblCAB" StoreEntitySet="tblAttachments">
+      <EndProperty Name="tblCAB">
+        <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+      </EndProperty>
+      <EndProperty Name="tblAttachments">
+        <ScalarProperty Name="AttachID" ColumnName="AttachID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABAnalysis_tblCAB" TypeName="cabmanagementModel.FK_tblCABAnalysis_tblCAB" StoreEntitySet="tblCABAnalysis">
+      <EndProperty Name="tblCAB">
+        <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+      </EndProperty>
+      <EndProperty Name="tblCABAnalysis">
+        <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABComment_tblCAB" TypeName="cabmanagementModel.FK_tblCABComment_tblCAB" StoreEntitySet="tblCABComment">
+      <EndProperty Name="tblCAB">
+        <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+      </EndProperty>
+      <EndProperty Name="tblCABComment">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABHistory_tblCAB" TypeName="cabmanagementModel.FK_tblCABHistory_tblCAB" StoreEntitySet="tblCABHistory">
+      <EndProperty Name="tblCAB">
+        <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+      </EndProperty>
+      <EndProperty Name="tblCABHistory">
+        <ScalarProperty Name="CABStatusID" ColumnName="CABStatusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABStartEnd_tblCAB" TypeName="cabmanagementModel.FK_tblCABStartEnd_tblCAB" StoreEntitySet="tblCABStartEnd">
+      <EndProperty Name="tblCAB">
+        <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+      </EndProperty>
+      <EndProperty Name="tblCABStartEnd">
+        <ScalarProperty Name="CABStartEndID" ColumnName="CABStartEndID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABTesting_tblCAB" TypeName="cabmanagementModel.FK_tblCABTesting_tblCAB" StoreEntitySet="tblCABTesting">
+      <EndProperty Name="tblCAB">
+        <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+      </EndProperty>
+      <EndProperty Name="tblCABTesting">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABAnalysis_tblDevelopers" TypeName="cabmanagementModel.FK_tblCABAnalysis_tblDevelopers" StoreEntitySet="tblCABAnalysis">
+      <EndProperty Name="tblDevelopers">
+        <ScalarProperty Name="DeveloperID" ColumnName="AnalyzerID" />
+      </EndProperty>
+      <EndProperty Name="tblCABAnalysis">
+        <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABHistory_tblCABAnalysis" TypeName="cabmanagementModel.FK_tblCABHistory_tblCABAnalysis" StoreEntitySet="tblCABHistory">
+      <EndProperty Name="tblCABAnalysis">
+        <ScalarProperty Name="AnalyzeID" ColumnName="AnalyzeID" />
+      </EndProperty>
+      <EndProperty Name="tblCABHistory">
+        <ScalarProperty Name="CABStatusID" ColumnName="CABStatusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABComment_tblDevelopers" TypeName="cabmanagementModel.FK_tblCABComment_tblDevelopers" StoreEntitySet="tblCABComment">
+      <EndProperty Name="tblDevelopers">
+        <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+      </EndProperty>
+      <EndProperty Name="tblCABComment">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABComment_tblStatusi" TypeName="cabmanagementModel.FK_tblCABComment_tblStatusi" StoreEntitySet="tblCABComment">
+      <EndProperty Name="tblStatusi">
+        <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+      </EndProperty>
+      <EndProperty Name="tblCABComment">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABHistory_tblStatusi" TypeName="cabmanagementModel.FK_tblCABHistory_tblStatusi" StoreEntitySet="tblCABHistory">
+      <EndProperty Name="tblStatusi">
+        <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+      </EndProperty>
+      <EndProperty Name="tblCABHistory">
+        <ScalarProperty Name="CABStatusID" ColumnName="CABStatusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABTaska_tblDevelopers" TypeName="cabmanagementModel.FK_tblCABTaska_tblDevelopers" StoreEntitySet="tblCABTaska">
+      <EndProperty Name="tblDevelopers">
+        <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+      </EndProperty>
+      <EndProperty Name="tblCABTaska">
+        <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+      </EndProperty>
+      <Condition ColumnName="DeveloperID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_tblCABTaska_tblDevelopers1" TypeName="cabmanagementModel.FK_tblCABTaska_tblDevelopers1" StoreEntitySet="tblCABTaska">
+      <EndProperty Name="tblDevelopers">
+        <ScalarProperty Name="DeveloperID" ColumnName="TaskerID" />
+      </EndProperty>
+      <EndProperty Name="tblCABTaska">
+        <ScalarProperty Name="CAB_Task_ID" ColumnName="CAB_Task_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

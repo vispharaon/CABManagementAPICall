@@ -2,6 +2,7 @@
 <Schema Namespace="cabmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="cabmanagementModelStoreContainer">
     <EntitySet Name="CABTimes" EntityType="cabmanagementModel.Store.CABTimes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Log" EntityType="cabmanagementModel.Store.Log" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.Store.tblAttachments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tblCAB" EntityType="cabmanagementModel.Store.tblCAB" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.Store.tblCABAnalysis" store:Type="Tables" Schema="dbo" />
@@ -26,6 +27,7 @@
     <EntitySet Name="tblStatusi" EntityType="cabmanagementModel.Store.tblStatusi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tblTaskHistory" EntityType="cabmanagementModel.Store.tblTaskHistory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tblUser" EntityType="cabmanagementModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TraceLog" EntityType="cabmanagementModel.Store.TraceLog" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_tblAttachments_tblCAB" Association="cabmanagementModel.Store.FK_tblAttachments_tblCAB">
       <End Role="tblCAB" EntitySet="tblCAB" />
       <End Role="tblAttachments" EntitySet="tblAttachments" />
@@ -93,6 +95,13 @@
     <Property Name="ScheduledTaskingStart" Type="date" />
     <Property Name="ScheduledTaskingEnd" Type="date" />
     <Property Name="PredictedWHForTesting" Type="int" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="log" Type="varchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="tblAttachments">
     <Key>
@@ -281,6 +290,13 @@
     <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="isAdmin" Type="int" />
     <Property Name="isExternal" Type="int" />
+  </EntityType>
+  <EntityType Name="TraceLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="text" Type="varchar" MaxLength="1000" />
   </EntityType>
   <Association Name="FK_tblAttachments_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />

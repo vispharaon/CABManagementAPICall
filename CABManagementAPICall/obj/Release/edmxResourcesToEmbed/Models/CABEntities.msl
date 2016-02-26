@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities">
+  <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities3">
     <EntitySetMapping Name="CABTimes">
       <EntityTypeMapping TypeName="cabmanagementModel.CABTimes">
         <MappingFragment StoreEntitySet="CABTimes">
@@ -10,6 +10,14 @@
           <ScalarProperty Name="ScheduledTaskingStart" ColumnName="ScheduledTaskingStart" />
           <ScalarProperty Name="ScheduledTaskingEnd" ColumnName="ScheduledTaskingEnd" />
           <ScalarProperty Name="PredictedWHForTesting" ColumnName="PredictedWHForTesting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="cabmanagementModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="log1" ColumnName="log" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -211,6 +219,14 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
           <ScalarProperty Name="isExternal" ColumnName="isExternal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TraceLog">
+      <EntityTypeMapping TypeName="cabmanagementModel.TraceLog">
+        <MappingFragment StoreEntitySet="TraceLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text" ColumnName="text" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="cabmanagementModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="cabmanagementEntities" p1:LazyLoadingEnabled="true">
+  <EntityContainer Name="cabmanagementEntities3" p1:LazyLoadingEnabled="true">
     <EntitySet Name="CABTimes" EntityType="cabmanagementModel.CABTimes" />
+    <EntitySet Name="Log" EntityType="cabmanagementModel.Log" />
     <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.tblAttachments" />
     <EntitySet Name="tblCAB" EntityType="cabmanagementModel.tblCAB" />
     <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.tblCABAnalysis" />
@@ -19,6 +20,7 @@
     <EntitySet Name="tblStatusi" EntityType="cabmanagementModel.tblStatusi" />
     <EntitySet Name="tblTaskHistory" EntityType="cabmanagementModel.tblTaskHistory" />
     <EntitySet Name="tblUser" EntityType="cabmanagementModel.tblUser" />
+    <EntitySet Name="TraceLog" EntityType="cabmanagementModel.TraceLog" />
     <AssociationSet Name="FK_tblAttachments_tblCAB" Association="cabmanagementModel.FK_tblAttachments_tblCAB">
       <End Role="tblCAB" EntitySet="tblCAB" />
       <End Role="tblAttachments" EntitySet="tblAttachments" />
@@ -86,6 +88,13 @@
     <Property Name="ScheduledTaskingStart" Type="DateTime" Precision="0" />
     <Property Name="ScheduledTaskingEnd" Type="DateTime" Precision="0" />
     <Property Name="PredictedWHForTesting" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="log1" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tblAttachments">
     <Key>
@@ -299,6 +308,13 @@
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="isAdmin" Type="Int32" />
     <Property Name="isExternal" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TraceLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
   </EntityType>
   <Association Name="FK_tblAttachments_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />

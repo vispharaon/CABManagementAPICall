@@ -12,7 +12,7 @@ using CABManagementAPICall.Models;
 
 namespace CABManagementAPICall.Controllers
 {
-    public class CABCodeReviewController : ApiController
+    /*public class CABCodeReviewController : ApiController
     {
         private cabmanagementEntities db = new cabmanagementEntities();
 
@@ -104,5 +104,5 @@ namespace CABManagementAPICall.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }
+    }*/
 }

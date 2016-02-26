@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="cabmanagementModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="cabmanagementEntities3" p1:LazyLoadingEnabled="true">
+  <EntityContainer Name="cabmanagementEntities2" p1:LazyLoadingEnabled="true">
     <EntitySet Name="CABTimes" EntityType="cabmanagementModel.CABTimes" />
     <EntitySet Name="Log" EntityType="cabmanagementModel.Log" />
     <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.tblAttachments" />
@@ -101,7 +101,6 @@
       <PropertyRef Name="AttachID" />
     </Key>
     <Property Name="AttachID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
     <Property Name="Attach_Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblAttachments_tblCAB" FromRole="tblAttachments" ToRole="tblCAB" />
   </EntityType>
@@ -131,8 +130,6 @@
       <PropertyRef Name="AnalyzeID" />
     </Key>
     <Property Name="AnalyzeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
-    <Property Name="AnalyzerID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="PredictedWH" Type="Int32" />
     <Property Name="AnalyzeText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABAnalysis_tblCAB" FromRole="tblCABAnalysis" ToRole="tblCAB" />
@@ -153,10 +150,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
-    <Property Name="DeveloperID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="StatusID" Type="Int32" Nullable="false" />
     <Property Name="Comment" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
     <Property Name="Status" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
     <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABComment_tblCAB" FromRole="tblCABComment" ToRole="tblCAB" />
@@ -169,9 +163,6 @@
     </Key>
     <Property Name="CABStatusID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="StatusDate" Type="DateTime" Precision="0" />
-    <Property Name="StatusID" Type="Int32" Nullable="false" />
-    <Property Name="AnalyzeID" Type="Int32" Nullable="false" />
-    <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABHistory_tblCAB" FromRole="tblCABHistory" ToRole="tblCAB" />
     <NavigationProperty Name="tblCABAnalysis" Relationship="cabmanagementModel.FK_tblCABHistory_tblCABAnalysis" FromRole="tblCABHistory" ToRole="tblCABAnalysis" />
     <NavigationProperty Name="tblStatusi" Relationship="cabmanagementModel.FK_tblCABHistory_tblStatusi" FromRole="tblCABHistory" ToRole="tblStatusi" />
@@ -192,7 +183,6 @@
       <PropertyRef Name="CABStartEndID" />
     </Key>
     <Property Name="CABStartEndID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
     <Property Name="StartDate" Type="DateTime" Precision="0" />
     <Property Name="EndDate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABStartEnd_tblCAB" FromRole="tblCABStartEnd" ToRole="tblCAB" />
@@ -207,9 +197,7 @@
     <Property Name="CAB_Task_Text" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="CAB_Task_Create_Date" Type="DateTime" Precision="0" />
     <Property Name="WorkingHours" Type="Int32" />
-    <Property Name="TaskerID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="TaskText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="DeveloperID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="tblDevelopers" Relationship="cabmanagementModel.FK_tblCABTaska_tblDevelopers" FromRole="tblCABTaska" ToRole="tblDevelopers" />
     <NavigationProperty Name="tblDevelopers1" Relationship="cabmanagementModel.FK_tblCABTaska_tblDevelopers1" FromRole="tblCABTaska" ToRole="tblDevelopers" />
   </EntityType>
@@ -233,7 +221,6 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
     <Property Name="Status_Test" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
     <Property Name="Datum_Izmjene" Type="DateTime" Precision="0" />
     <Property Name="Opis" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
@@ -319,158 +306,54 @@
   <Association Name="FK_tblAttachments_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
     <End Role="tblAttachments" Type="cabmanagementModel.tblAttachments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblCAB">
-        <PropertyRef Name="CAB_HD_No" />
-      </Principal>
-      <Dependent Role="tblAttachments">
-        <PropertyRef Name="CAB_HD_No" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABAnalysis_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
     <End Role="tblCABAnalysis" Type="cabmanagementModel.tblCABAnalysis" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblCAB">
-        <PropertyRef Name="CAB_HD_No" />
-      </Principal>
-      <Dependent Role="tblCABAnalysis">
-        <PropertyRef Name="CAB_HD_No" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABComment_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
     <End Role="tblCABComment" Type="cabmanagementModel.tblCABComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblCAB">
-        <PropertyRef Name="CAB_HD_No" />
-      </Principal>
-      <Dependent Role="tblCABComment">
-        <PropertyRef Name="CAB_HD_No" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABHistory_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
     <End Role="tblCABHistory" Type="cabmanagementModel.tblCABHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblCAB">
-        <PropertyRef Name="CAB_HD_No" />
-      </Principal>
-      <Dependent Role="tblCABHistory">
-        <PropertyRef Name="CAB_HD_No" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABStartEnd_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
     <End Role="tblCABStartEnd" Type="cabmanagementModel.tblCABStartEnd" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblCAB">
-        <PropertyRef Name="CAB_HD_No" />
-      </Principal>
-      <Dependent Role="tblCABStartEnd">
-        <PropertyRef Name="CAB_HD_No" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABTesting_tblCAB">
     <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
     <End Role="tblCABTesting" Type="cabmanagementModel.tblCABTesting" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblCAB">
-        <PropertyRef Name="CAB_HD_No" />
-      </Principal>
-      <Dependent Role="tblCABTesting">
-        <PropertyRef Name="CAB_HD_No" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABAnalysis_tblDevelopers">
     <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
     <End Role="tblCABAnalysis" Type="cabmanagementModel.tblCABAnalysis" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblDevelopers">
-        <PropertyRef Name="DeveloperID" />
-      </Principal>
-      <Dependent Role="tblCABAnalysis">
-        <PropertyRef Name="AnalyzerID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABHistory_tblCABAnalysis">
     <End Role="tblCABAnalysis" Type="cabmanagementModel.tblCABAnalysis" Multiplicity="1" />
     <End Role="tblCABHistory" Type="cabmanagementModel.tblCABHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblCABAnalysis">
-        <PropertyRef Name="AnalyzeID" />
-      </Principal>
-      <Dependent Role="tblCABHistory">
-        <PropertyRef Name="AnalyzeID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABComment_tblDevelopers">
     <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
     <End Role="tblCABComment" Type="cabmanagementModel.tblCABComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblDevelopers">
-        <PropertyRef Name="DeveloperID" />
-      </Principal>
-      <Dependent Role="tblCABComment">
-        <PropertyRef Name="DeveloperID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABComment_tblStatusi">
     <End Role="tblStatusi" Type="cabmanagementModel.tblStatusi" Multiplicity="1" />
     <End Role="tblCABComment" Type="cabmanagementModel.tblCABComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblStatusi">
-        <PropertyRef Name="StatusID" />
-      </Principal>
-      <Dependent Role="tblCABComment">
-        <PropertyRef Name="StatusID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABHistory_tblStatusi">
     <End Role="tblStatusi" Type="cabmanagementModel.tblStatusi" Multiplicity="1" />
     <End Role="tblCABHistory" Type="cabmanagementModel.tblCABHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblStatusi">
-        <PropertyRef Name="StatusID" />
-      </Principal>
-      <Dependent Role="tblCABHistory">
-        <PropertyRef Name="StatusID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABTaska_tblDevelopers">
     <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="0..1" />
     <End Role="tblCABTaska" Type="cabmanagementModel.tblCABTaska" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblDevelopers">
-        <PropertyRef Name="DeveloperID" />
-      </Principal>
-      <Dependent Role="tblCABTaska">
-        <PropertyRef Name="DeveloperID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABTaska_tblDevelopers1">
     <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
     <End Role="tblCABTaska" Type="cabmanagementModel.tblCABTaska" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblDevelopers">
-        <PropertyRef Name="DeveloperID" />
-      </Principal>
-      <Dependent Role="tblCABTaska">
-        <PropertyRef Name="TaskerID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblCABVoting_tblDevelopers">
     <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />

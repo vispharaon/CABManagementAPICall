@@ -4,9 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="cabmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="cabmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="cabmanagementModelStoreContainer">
           <EntitySet Name="CABTimes" EntityType="cabmanagementModel.Store.CABTimes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Log" EntityType="cabmanagementModel.Store.Log" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.Store.tblAttachments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblCAB" EntityType="cabmanagementModel.Store.tblCAB" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.Store.tblCABAnalysis" store:Type="Tables" Schema="dbo" />
@@ -31,6 +32,7 @@
           <EntitySet Name="tblStatusi" EntityType="cabmanagementModel.Store.tblStatusi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblTaskHistory" EntityType="cabmanagementModel.Store.tblTaskHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblUser" EntityType="cabmanagementModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TraceLog" EntityType="cabmanagementModel.Store.TraceLog" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_tblAttachments_tblCAB" Association="cabmanagementModel.Store.FK_tblAttachments_tblCAB">
             <End Role="tblCAB" EntitySet="tblCAB" />
             <End Role="tblAttachments" EntitySet="tblAttachments" />
@@ -98,6 +100,13 @@
           <Property Name="ScheduledTaskingStart" Type="date" />
           <Property Name="ScheduledTaskingEnd" Type="date" />
           <Property Name="PredictedWHForTesting" Type="int" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="log" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="tblAttachments">
           <Key>
@@ -287,6 +296,13 @@
           <Property Name="isAdmin" Type="int" />
           <Property Name="isExternal" Type="int" />
         </EntityType>
+        <EntityType Name="TraceLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="text" Type="varchar" MaxLength="1000" />
+        </EntityType>
         <Association Name="FK_tblAttachments_tblCAB">
           <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
           <End Role="tblAttachments" Type="cabmanagementModel.Store.tblAttachments" Multiplicity="*" />
@@ -455,13 +471,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="cabmanagementModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="cabmanagementEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="cabmanagementEntities3" p1:LazyLoadingEnabled="true">
           <EntitySet Name="CABTimes" EntityType="cabmanagementModel.CABTimes" />
+          <EntitySet Name="Log" EntityType="cabmanagementModel.Log" />
           <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.tblAttachments" />
           <EntitySet Name="tblCAB" EntityType="cabmanagementModel.tblCAB" />
           <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.tblCABAnalysis" />
@@ -479,6 +495,7 @@
           <EntitySet Name="tblStatusi" EntityType="cabmanagementModel.tblStatusi" />
           <EntitySet Name="tblTaskHistory" EntityType="cabmanagementModel.tblTaskHistory" />
           <EntitySet Name="tblUser" EntityType="cabmanagementModel.tblUser" />
+          <EntitySet Name="TraceLog" EntityType="cabmanagementModel.TraceLog" />
           <AssociationSet Name="FK_tblAttachments_tblCAB" Association="cabmanagementModel.FK_tblAttachments_tblCAB">
             <End Role="tblCAB" EntitySet="tblCAB" />
             <End Role="tblAttachments" EntitySet="tblAttachments" />
@@ -546,6 +563,13 @@
           <Property Name="ScheduledTaskingStart" Type="DateTime" Precision="0" />
           <Property Name="ScheduledTaskingEnd" Type="DateTime" Precision="0" />
           <Property Name="PredictedWHForTesting" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="log1" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="tblAttachments">
           <Key>
@@ -760,6 +784,13 @@
           <Property Name="isAdmin" Type="Int32" />
           <Property Name="isExternal" Type="Int32" />
         </EntityType>
+        <EntityType Name="TraceLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+        </EntityType>
         <Association Name="FK_tblAttachments_tblCAB">
           <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
           <End Role="tblAttachments" Type="cabmanagementModel.tblAttachments" Multiplicity="*" />
@@ -933,7 +964,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities">
+        <EntityContainerMapping StorageEntityContainer="cabmanagementModelStoreContainer" CdmEntityContainer="cabmanagementEntities3">
           <EntitySetMapping Name="CABTimes">
             <EntityTypeMapping TypeName="cabmanagementModel.CABTimes">
               <MappingFragment StoreEntitySet="CABTimes">
@@ -943,6 +974,14 @@
                 <ScalarProperty Name="ScheduledTaskingStart" ColumnName="ScheduledTaskingStart" />
                 <ScalarProperty Name="ScheduledTaskingEnd" ColumnName="ScheduledTaskingEnd" />
                 <ScalarProperty Name="PredictedWHForTesting" ColumnName="PredictedWHForTesting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="cabmanagementModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="log1" ColumnName="log" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1144,6 +1183,14 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="isExternal" ColumnName="isExternal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TraceLog">
+            <EntityTypeMapping TypeName="cabmanagementModel.TraceLog">
+              <MappingFragment StoreEntitySet="TraceLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="text" ColumnName="text" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

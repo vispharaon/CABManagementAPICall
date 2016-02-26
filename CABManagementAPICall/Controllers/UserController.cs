@@ -14,7 +14,7 @@ namespace CABManagementAPICall.Controllers
 {
     public class UserController : ApiController
     {
-        private cabmanagementEntities db = new cabmanagementEntities();
+        private cabmanagementEntities3 db = new cabmanagementEntities3();
 
         // GET api/Default1
         public IEnumerable<tblUser> GettblUsers()

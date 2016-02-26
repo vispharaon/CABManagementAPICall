@@ -12,35 +12,34 @@ using CABManagementAPICall.Models;
 
 namespace CABManagementAPICall.Controllers
 {
-    /*public class CABHistoryController : ApiController
+    public class TraceLogController : ApiController
     {
-        private cabmanagementEntities db = new cabmanagementEntities();
+        private cabmanagementEntities3 db = new cabmanagementEntities3();
 
-        // GET api/CABHistory
-        public IEnumerable<tblCABHistory> GettblCABHistories()
+        // GET api/TraceLog
+        public IEnumerable<TraceLog> GetTraceLogs()
         {
-            var tblcabhistory = db.tblCABHistory.Include(t => t.tblCAB).Include(t => t.tblCABAnalysis).Include(t => t.tblStatusi);
-            return tblcabhistory.AsEnumerable();
+            return db.TraceLog.AsEnumerable();
         }
 
-        // GET api/CABHistory/5
-        public tblCABHistory GettblCABHistory(int id)
+        // GET api/TraceLog/5
+        public TraceLog GetTraceLog(int id)
         {
-            tblCABHistory tblcabhistory = db.tblCABHistory.Find(id);
-            if (tblcabhistory == null)
+            TraceLog tracelog = db.TraceLog.Find(id);
+            if (tracelog == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return tblcabhistory;
+            return tracelog;
         }
 
-        // PUT api/CABHistory/5
-        public HttpResponseMessage PuttblCABHistory(int id, tblCABHistory tblcabhistory)
+        // PUT api/TraceLog/5
+        public HttpResponseMessage PutTraceLog(int id, TraceLog tracelog)
         {
-            if (ModelState.IsValid && id == tblcabhistory.CABStatusID)
+            if (ModelState.IsValid && id == tracelog.id)
             {
-                db.Entry(tblcabhistory).State = EntityState.Modified;
+                db.Entry(tracelog).State = EntityState.Modified;
 
                 try
                 {
@@ -59,16 +58,16 @@ namespace CABManagementAPICall.Controllers
             }
         }
 
-        // POST api/CABHistory
-        public HttpResponseMessage PosttblCABHistory(tblCABHistory tblcabhistory)
+        // POST api/TraceLog
+        public HttpResponseMessage PostTraceLog(TraceLog tracelog)
         {
             if (ModelState.IsValid)
             {
-                db.tblCABHistory.Add(tblcabhistory);
+                db.TraceLog.Add(tracelog);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabhistory);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabhistory.CABStatusID }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tracelog);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tracelog.id }));
                 return response;
             }
             else
@@ -77,16 +76,16 @@ namespace CABManagementAPICall.Controllers
             }
         }
 
-        // DELETE api/CABHistory/5
-        public HttpResponseMessage DeletetblCABHistory(int id)
+        // DELETE api/TraceLog/5
+        public HttpResponseMessage DeleteTraceLog(int id)
         {
-            tblCABHistory tblcabhistory = db.tblCABHistory.Find(id);
-            if (tblcabhistory == null)
+            TraceLog tracelog = db.TraceLog.Find(id);
+            if (tracelog == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.tblCABHistory.Remove(tblcabhistory);
+            db.TraceLog.Remove(tracelog);
 
             try
             {
@@ -97,7 +96,7 @@ namespace CABManagementAPICall.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, tblcabhistory);
+            return Request.CreateResponse(HttpStatusCode.OK, tracelog);
         }
 
         protected override void Dispose(bool disposing)
@@ -105,5 +104,5 @@ namespace CABManagementAPICall.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }*/
+    }
 }

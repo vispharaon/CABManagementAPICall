@@ -13,10 +13,10 @@ namespace CABManagementAPICall.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class cabmanagementEntities : DbContext
+    public partial class cabmanagementEntities3 : DbContext
     {
-        public cabmanagementEntities()
-            : base("name=cabmanagementEntities")
+        public cabmanagementEntities3()
+            : base("name=cabmanagementEntities3")
         {
         }
     
@@ -26,6 +26,7 @@ namespace CABManagementAPICall.Models
         }
     
         public DbSet<CABTimes> CABTimes { get; set; }
+        public DbSet<Log> Log { get; set; }
         public DbSet<tblAttachments> tblAttachments { get; set; }
         public DbSet<tblCAB> tblCAB { get; set; }
         public DbSet<tblCABAnalysis> tblCABAnalysis { get; set; }
@@ -43,5 +44,6 @@ namespace CABManagementAPICall.Models
         public DbSet<tblStatusi> tblStatusi { get; set; }
         public DbSet<tblTaskHistory> tblTaskHistory { get; set; }
         public DbSet<tblUser> tblUser { get; set; }
+        public DbSet<TraceLog> TraceLog { get; set; }
     }
 }

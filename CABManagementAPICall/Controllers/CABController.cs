@@ -9,12 +9,15 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using CABManagementAPICall.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CABManagementAPICall.Controllers
 {
     public class CABController : ApiController
     {
-        private cabmanagementEntities db = new cabmanagementEntities();
+        private cabmanagementEntities3 db = new cabmanagementEntities3();
+        private cabmanagementEntities3 logDB = new cabmanagementEntities3();
 
         //// GET api/CAB
         //public IEnumerable<tblCAB> GettblCABs()
@@ -89,21 +92,80 @@ namespace CABManagementAPICall.Controllers
         }
 
         // POST api/CAB
-        public HttpResponseMessage PosttblCAB(tblCAB tblcab)
+        public HttpResponseMessage PosttblCAB(object tblcab)
         {
             if (ModelState.IsValid)
             {
-                db.tblCAB.Add(tblcab);
-                db.SaveChanges();
+
+                dynamic d = JObject.Parse(tblcab.ToString());
+
+                tblCAB tblcabobj = MapCabObject(d);
+
+                try
+                {
+                    db.tblCAB.Add(tblcabobj);
+
+                    tblCABAnalysis tblanalysis = new tblCABAnalysis();
+                    tblanalysis.CAB_HD_No = tblcabobj.CAB_HD_No;
+                    tblanalysis.tblDevelopers = db.tblDevelopers.FirstOrDefault(x => x.IsAnalyzer == null ? false : x.IsAnalyzer.Value == 1);
+                    db.tblCABAnalysis.Add(tblanalysis);
+
+                    tblCABHistory tblhistory = new tblCABHistory();
+                    tblhistory.AnalyzeID = tblanalysis.AnalyzeID;
+                    tblhistory.CAB_HD_No = tblcabobj.CAB_HD_No;
+                    tblhistory.StatusID = db.tblStatusi.Single(x => "Received".Equals(x.StatusDesc)).StatusID;
+                    tblhistory.StatusDate = DateTime.Now;
+                    db.tblCABHistory.Add(tblhistory);
+
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    var entityLog = new TraceLog();
+                    entityLog.id = logDB.TraceLog.Max(x => x.id) + 1;
+                    entityLog.text = ex.Message;
+                    logDB.TraceLog.Add(entityLog);
+                    logDB.SaveChanges();
+                }               
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcab);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcab.CAB_HD_No }));
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabobj.CAB_HD_No }));
                 return response;
             }
             else
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+        }
+        private tblCAB MapCabObject(dynamic tblCABObject)
+        {
+            //var tblcabobj = (tblCABObject)tblCABObject;            
+            tblCAB tblcab = new tblCAB();
+
+            tblcab.CAB_Department = tblCABObject.CAB_Department;
+            tblcab.CAB_HD_Date = new DateTime(Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Split('.')[2]), Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Split('.')[1]), Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Split('.')[0]));
+            tblcab.CAB_HD_No = Convert.ToInt32(tblCABObject.CAB_HD_No);
+            tblcab.CAB_HD_Title = tblCABObject.CAB_HD_Title;
+            tblcab.CAB_Note = tblCABObject.CAB_Note;
+            tblcab.CAB_Priority = tblCABObject.CAB_Priority;
+            tblcab.CAB_Sender = tblCABObject.CAB_Sender;
+            tblcab.CAB_Type = tblCABObject.CAB_Type;
+            tblcab.Developer_Comment = tblCABObject.Developer_Comment;           
+
+            return tblcab;
+        }
+
+        private class tblCABObject
+        {
+            public string CAB_HD_No;
+            public string CAB_Type;
+            public string CAB_HD_Date;
+            public string CAB_HD_Title;
+            public string CAB_Sender;
+            public string CAB_Priority;
+            public string CAB_Note;
+            public string Developer_Comment;
+            public string CAB_Department;
         }
 
         // DELETE api/CAB/5
