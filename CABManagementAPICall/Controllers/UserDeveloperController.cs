@@ -15,20 +15,28 @@ namespace CABManagementAPICall.Controllers
     public class UserDeveloperController : ApiController
     {
         private cabmanagementEntities3 db = new cabmanagementEntities3();
+        private cabmanagementEntities3 logDB = new cabmanagementEntities3();
 
-        // GET api/UserDeveloper
-        public IEnumerable<tblDevelopers> GettblDevelopers()
-        {
-            return db.tblDevelopers.AsEnumerable();
-        }
+        //// GET api/UserDeveloper
+        //public IEnumerable<tblDevelopers> GettblDevelopers()
+        //{
+        //    return db.tblDevelopers.AsEnumerable();
+        //}
 
         // GET api/UserDeveloper/5
         public tblDevelopers GettblDevelopers(string id)
         {
-            tblDevelopers tbldevelopers = db.tblDevelopers.Find(id);
+
+            var entityLog = new TraceLog();
+            entityLog.id = logDB.TraceLog.Max(x => x.id) + 1;
+            entityLog.text = id;
+            logDB.TraceLog.Add(entityLog);
+            logDB.SaveChanges();
+
+            tblDevelopers tbldevelopers = db.tblDevelopers.Where(x => x.DeveloperID == id).FirstOrDefault();
             if (tbldevelopers == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, "Nije pronađen korisnik sa unesenim podacima."));     
             }
 
             return tbldevelopers;
