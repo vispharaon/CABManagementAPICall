@@ -56,15 +56,41 @@ namespace CABManagementAPICall.Controllers
         }
 
         // GET api/CAB/5
-        public tblCAB GettblCAB(int id)
+        public object GettblCAB(int id)
         {
-            tblCAB tblcab = db.tblCAB.Find(id);
-            if (tblcab == null)
+            var cabInfo = db.tblCAB.Where(x => x.CAB_HD_No == id).Join(db.tblCABHistory, tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
+                new
+                {
+                    CAB_HD_No = tc.CAB_HD_No,
+                    CAB_HD_Title = tc.CAB_HD_Title,
+                    CAB_Type = tc.CAB_Type,
+                    CAB_HD_Date = tc.CAB_HD_Date,
+                    CAB_Sender = tc.CAB_Sender,
+                    CAB_Priority = tc.CAB_Priority,
+                    CAB_Department = tc.CAB_Department,
+                    StatusID = tch.StatusID,
+                    StatusDate = tch.StatusDate
+                }).Join(db.tblStatusi, all => all.StatusID, ts => ts.StatusID, (all, ts) =>
+               new
+               {
+                   CAB_HD_No = all.CAB_HD_No,
+                   CAB_Type = all.CAB_Type,
+                   CAB_HD_Title = all.CAB_HD_Title,
+                   CAB_Sender = all.CAB_Sender,                   
+                   CAB_Department = all.CAB_Department,
+                   CAB_Priority = all.CAB_Priority,
+                   CAB_HD_Date = all.CAB_HD_Date,                   
+                   StatusName = ts.StatusDesc,
+                   StatusDate = all.StatusDate
+               }).FirstOrDefault();
+
+            //tblCAB tblcab = db.tblCAB.Where(x => x.CAB_HD_No == id).FirstOrDefault();
+            if (cabInfo == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return tblcab;
+            return cabInfo;
         }
 
         // PUT api/CAB/5
