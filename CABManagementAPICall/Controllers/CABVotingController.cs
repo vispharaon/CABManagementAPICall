@@ -121,6 +121,41 @@ namespace CABManagementAPICall.Controllers
             }
         }
 
+        // POST api/CABVoting
+        //insert into tblCABSchedules and tblCABHistory with status 3 (Waiting for Analysis)
+        public HttpResponseMessage PosttblCABVoting(int id, string datefrom, string dateto, string voter)
+        {
+            if (ModelState.IsValid)
+            {
+                tblCABSchedules tblcabschedules = new tblCABSchedules();
+                tblcabschedules.CAB_HD_No = id;
+                tblcabschedules.ScheduleDate = DateTime.Now;
+                tblcabschedules.ScheduledStart = new DateTime(Convert.ToInt32(datefrom.Split('/')[2]), Convert.ToInt32(datefrom.Split('/')[0]), Convert.ToInt32(datefrom.Split('/')[1]));
+                tblcabschedules.ScheduledEnd = new DateTime(Convert.ToInt32(dateto.Split('/')[2]), Convert.ToInt32(dateto.Split('/')[0]), Convert.ToInt32(dateto.Split('/')[1]));
+                db.tblCABSchedules.Add(tblcabschedules);
+
+                tblCABHistory tblcabhistory = new tblCABHistory();
+                tblcabhistory.AnalyzeID = db.tblCABHistory.Where(x => x.CAB_HD_No == id).First().AnalyzeID;
+                tblcabhistory.CAB_HD_No = id;
+                tblcabhistory.StatusID = 3;
+                tblcabhistory.StatusDate = DateTime.Now;
+                db.tblCABHistory.Add(tblcabhistory);
+
+                db.tblCABVoting.Where(x => x.CAB_HD_No == id).Single().CABVoteDate = DateTime.Now;
+                db.tblCABVoting.Where(x => x.CAB_HD_No == id).Single().VoterID = voter;
+                
+                db.SaveChanges();
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabschedules);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabschedules.ScheduleID }));
+                return response;
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
         // DELETE api/CABVoting/5
         public HttpResponseMessage DeletetblCABVoting(string id)
         {
