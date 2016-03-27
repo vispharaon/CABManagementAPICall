@@ -12,15 +12,48 @@ using CABManagementAPICall.Models;
 
 namespace CABManagementAPICall.Controllers
 {
-    /*public class CABVotingController : ApiController
+    public class CABVotingController : ApiController
     {
-        private cabmanagementEntities db = new cabmanagementEntities();
+        private cabmanagementEntities3 db = new cabmanagementEntities3();
 
-        // GET api/CABVoting
-        public IEnumerable<tblCABVoting> GettblCABVotings()
+        //// GET api/CABVoting
+        //public IEnumerable<tblCABVoting> GettblCABVotings()
+        //{
+
+        //    var tblcabvoting = db.tblCABVoting.Include(t => t.tblDevelopers);
+        //    return tblcabvoting.AsEnumerable();
+        //}
+
+        public IEnumerable<object> GettblCABs()
         {
-            var tblcabvoting = db.tblCABVoting.Include(t => t.tblDevelopers);
-            return tblcabvoting.AsEnumerable();
+            //todo: Dodati join sa tabelom tblStatusi i dodati uslov za tblCABHistory da uzima samo zadnji CABStatusId za CAB_HD_No.
+            var listVotingCABs = db.tblCAB.Join(db.tblCABHistory, tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
+                new
+                {
+                    CAB_HD_No = tc.CAB_HD_No,
+                    CAB_HD_Title = tc.CAB_HD_Title,
+                    CAB_Type = tc.CAB_Type,
+                    CAB_HD_Date = tc.CAB_HD_Date,
+                    CAB_Sender = tc.CAB_Sender,
+                    CAB_Priority = tc.CAB_Priority,
+                    CAB_Department = tc.CAB_Department,
+                    StatusID = tch.StatusID,
+                    StatusDate = tch.StatusDate
+                }).Where(x => x.StatusID == 2).Join(db.tblStatusi, all => all.StatusID, ts => ts.StatusID, (all, ts) =>
+               new
+               {
+                   CAB_HD_No = all.CAB_HD_No,
+                   CAB_HD_Title = all.CAB_HD_Title,
+                   CAB_Type = all.CAB_Type,
+                   CAB_HD_Date = all.CAB_HD_Date,
+                   CAB_Sender = all.CAB_Sender,
+                   CAB_Priority = all.CAB_Priority,
+                   CAB_Department = all.CAB_Department,
+                   StatusName = ts.StatusDesc,
+                   StatusDate = all.StatusDate
+               });
+
+            return listVotingCABs.AsEnumerable();
         }
 
         // GET api/CABVoting/5
@@ -60,11 +93,22 @@ namespace CABManagementAPICall.Controllers
         }
 
         // POST api/CABVoting
-        public HttpResponseMessage PosttblCABVoting(tblCABVoting tblcabvoting)
+        //insert into tblCABVoting and tblCABHistory with status 2 (Where To Go)
+        public HttpResponseMessage PosttblCABVoting(int id)
         {
             if (ModelState.IsValid)
             {
+                tblCABVoting tblcabvoting = new tblCABVoting();
+                tblcabvoting.CAB_HD_No = id;                
                 db.tblCABVoting.Add(tblcabvoting);
+
+                tblCABHistory tblcabhistory = new tblCABHistory();
+                tblcabhistory.AnalyzeID = db.tblCABHistory.Where(x => x.CAB_HD_No == id).First().AnalyzeID;
+                tblcabhistory.CAB_HD_No = id;
+                tblcabhistory.StatusID = 2;
+                tblcabhistory.StatusDate = DateTime.Now;
+                db.tblCABHistory.Add(tblcabhistory);
+
                 db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabvoting);
@@ -105,5 +149,5 @@ namespace CABManagementAPICall.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }*/
+    }
 }

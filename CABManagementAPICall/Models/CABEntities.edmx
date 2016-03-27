@@ -7,7 +7,6 @@
     <Schema Namespace="cabmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="cabmanagementModelStoreContainer">
           <EntitySet Name="CABTimes" EntityType="cabmanagementModel.Store.CABTimes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Log" EntityType="cabmanagementModel.Store.Log" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.Store.tblAttachments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblCAB" EntityType="cabmanagementModel.Store.tblCAB" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.Store.tblCABAnalysis" store:Type="Tables" Schema="dbo" />
@@ -100,13 +99,6 @@
           <Property Name="ScheduledTaskingStart" Type="date" />
           <Property Name="ScheduledTaskingEnd" Type="date" />
           <Property Name="PredictedWHForTesting" Type="int" />
-        </EntityType>
-        <EntityType Name="Log">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="log" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="tblAttachments">
           <Key>
@@ -237,10 +229,9 @@
         </EntityType>
         <EntityType Name="tblCABVoting">
           <Key>
-            <PropertyRef Name="VoterID" />
-            <PropertyRef Name="CAB_HD_No" />
+            <PropertyRef Name="VoteID" />
           </Key>
-          <Property Name="VoterID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="VoterID" Type="varchar" MaxLength="50" />
           <Property Name="CAB_HD_No" Type="int" Nullable="false" />
           <Property Name="VoteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CABVote" Type="int" />
@@ -301,7 +292,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="text" Type="varchar" MaxLength="1000" />
+          <Property Name="text" Type="varchar" MaxLength="5000" />
         </EntityType>
         <Association Name="FK_tblAttachments_tblCAB">
           <End Role="tblCAB" Type="cabmanagementModel.Store.tblCAB" Multiplicity="1" />
@@ -460,7 +451,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblCABVoting_tblDevelopers">
-          <End Role="tblDevelopers" Type="cabmanagementModel.Store.tblDevelopers" Multiplicity="1" />
+          <End Role="tblDevelopers" Type="cabmanagementModel.Store.tblDevelopers" Multiplicity="0..1" />
           <End Role="tblCABVoting" Type="cabmanagementModel.Store.tblCABVoting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDevelopers">
@@ -477,7 +468,6 @@
       <Schema Namespace="cabmanagementModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="cabmanagementEntities3" p1:LazyLoadingEnabled="true">
           <EntitySet Name="CABTimes" EntityType="cabmanagementModel.CABTimes" />
-          <EntitySet Name="Log" EntityType="cabmanagementModel.Log" />
           <EntitySet Name="tblAttachments" EntityType="cabmanagementModel.tblAttachments" />
           <EntitySet Name="tblCAB" EntityType="cabmanagementModel.tblCAB" />
           <EntitySet Name="tblCABAnalysis" EntityType="cabmanagementModel.tblCABAnalysis" />
@@ -489,7 +479,6 @@
           <EntitySet Name="tblCABTaska" EntityType="cabmanagementModel.tblCABTaska" />
           <EntitySet Name="tblCABTaskaH" EntityType="cabmanagementModel.tblCABTaskaH" />
           <EntitySet Name="tblCABTesting" EntityType="cabmanagementModel.tblCABTesting" />
-          <EntitySet Name="tblCABVoting" EntityType="cabmanagementModel.tblCABVoting" />
           <EntitySet Name="tblDevelopers" EntityType="cabmanagementModel.tblDevelopers" />
           <EntitySet Name="tblDevelopersTimes" EntityType="cabmanagementModel.tblDevelopersTimes" />
           <EntitySet Name="tblStatusi" EntityType="cabmanagementModel.tblStatusi" />
@@ -548,6 +537,7 @@
             <End Role="tblDevelopers" EntitySet="tblDevelopers" />
             <End Role="tblCABTaska" EntitySet="tblCABTaska" />
           </AssociationSet>
+          <EntitySet Name="tblCABVoting" EntityType="cabmanagementModel.tblCABVoting" />
           <AssociationSet Name="FK_tblCABVoting_tblDevelopers" Association="cabmanagementModel.FK_tblCABVoting_tblDevelopers">
             <End Role="tblDevelopers" EntitySet="tblDevelopers" />
             <End Role="tblCABVoting" EntitySet="tblCABVoting" />
@@ -563,13 +553,6 @@
           <Property Name="ScheduledTaskingStart" Type="DateTime" Precision="0" />
           <Property Name="ScheduledTaskingEnd" Type="DateTime" Precision="0" />
           <Property Name="PredictedWHForTesting" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Log">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="log1" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="tblAttachments">
           <Key>
@@ -715,18 +698,6 @@
           <Property Name="DeveloperID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tblCAB" Relationship="cabmanagementModel.FK_tblCABTesting_tblCAB" FromRole="tblCABTesting" ToRole="tblCAB" />
         </EntityType>
-        <EntityType Name="tblCABVoting">
-          <Key>
-            <PropertyRef Name="VoterID" />
-            <PropertyRef Name="CAB_HD_No" />
-          </Key>
-          <Property Name="VoterID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CAB_HD_No" Type="Int32" Nullable="false" />
-          <Property Name="VoteID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CABVote" Type="Int32" />
-          <Property Name="CABVoteDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="tblDevelopers" Relationship="cabmanagementModel.FK_tblCABVoting_tblDevelopers" FromRole="tblCABVoting" ToRole="tblDevelopers" />
-        </EntityType>
         <EntityType Name="tblDevelopers">
           <Key>
             <PropertyRef Name="DeveloperID" />
@@ -789,7 +760,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="text" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="text" Type="String" MaxLength="5000" Unicode="false" FixedLength="false" />
         </EntityType>
         <Association Name="FK_tblAttachments_tblCAB">
           <End Role="tblCAB" Type="cabmanagementModel.tblCAB" Multiplicity="1" />
@@ -947,9 +918,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblCABVoting">
+          <Key>
+            <PropertyRef Name="VoteID" />
+          </Key>
+          <Property Type="String" Name="VoterID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CAB_HD_No" Nullable="false" />
+          <Property Type="Int32" Name="VoteID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CABVote" />
+          <Property Type="DateTime" Name="CABVoteDate" Precision="0" />
+          <NavigationProperty Name="tblDevelopers" Relationship="cabmanagementModel.FK_tblCABVoting_tblDevelopers" FromRole="tblCABVoting" ToRole="tblDevelopers" />
+        </EntityType>
         <Association Name="FK_tblCABVoting_tblDevelopers">
-          <End Role="tblDevelopers" Type="cabmanagementModel.tblDevelopers" Multiplicity="1" />
-          <End Role="tblCABVoting" Type="cabmanagementModel.tblCABVoting" Multiplicity="*" />
+          <End Type="cabmanagementModel.tblDevelopers" Role="tblDevelopers" Multiplicity="0..1" />
+          <End Type="cabmanagementModel.tblCABVoting" Role="tblCABVoting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDevelopers">
               <PropertyRef Name="DeveloperID" />
@@ -974,14 +956,6 @@
                 <ScalarProperty Name="ScheduledTaskingStart" ColumnName="ScheduledTaskingStart" />
                 <ScalarProperty Name="ScheduledTaskingEnd" ColumnName="ScheduledTaskingEnd" />
                 <ScalarProperty Name="PredictedWHForTesting" ColumnName="PredictedWHForTesting" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Log">
-            <EntityTypeMapping TypeName="cabmanagementModel.Log">
-              <MappingFragment StoreEntitySet="Log">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="log1" ColumnName="log" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1120,17 +1094,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblCABVoting">
-            <EntityTypeMapping TypeName="cabmanagementModel.tblCABVoting">
-              <MappingFragment StoreEntitySet="tblCABVoting">
-                <ScalarProperty Name="VoterID" ColumnName="VoterID" />
-                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
-                <ScalarProperty Name="VoteID" ColumnName="VoteID" />
-                <ScalarProperty Name="CABVote" ColumnName="CABVote" />
-                <ScalarProperty Name="CABVoteDate" ColumnName="CABVoteDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblDevelopers">
             <EntityTypeMapping TypeName="cabmanagementModel.tblDevelopers">
               <MappingFragment StoreEntitySet="tblDevelopers">
@@ -1191,6 +1154,17 @@
               <MappingFragment StoreEntitySet="TraceLog">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="text" ColumnName="text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCABVoting">
+            <EntityTypeMapping TypeName="cabmanagementModel.tblCABVoting">
+              <MappingFragment StoreEntitySet="tblCABVoting">
+                <ScalarProperty Name="CABVoteDate" ColumnName="CABVoteDate" />
+                <ScalarProperty Name="CABVote" ColumnName="CABVote" />
+                <ScalarProperty Name="VoteID" ColumnName="VoteID" />
+                <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+                <ScalarProperty Name="VoterID" ColumnName="VoterID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

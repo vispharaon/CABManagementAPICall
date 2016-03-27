@@ -165,11 +165,18 @@ namespace CABManagementAPICall.Controllers
         }
         private tblCAB MapCabObject(dynamic tblCABObject)
         {
+
+            //var entityLog = new TraceLog();
+            //entityLog.id = logDB.TraceLog.Max(x => x.id) + 1;
+            //entityLog.text = tblCABObject.CAB_HD_Date;
+            //logDB.TraceLog.Add(entityLog);
+            //logDB.SaveChanges();
+
             //var tblcabobj = (tblCABObject)tblCABObject;            
             tblCAB tblcab = new tblCAB();
 
             tblcab.CAB_Department = tblCABObject.CAB_Department;
-            tblcab.CAB_HD_Date = new DateTime(Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Split('.')[2]), Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Split('.')[1]), Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Split('.')[0]));
+            tblcab.CAB_HD_Date = new DateTime(Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Substring(6, 4)), Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Substring(0, 2)), Convert.ToInt32(tblCABObject.CAB_HD_Date.ToString().Substring(3,2)));
             tblcab.CAB_HD_No = Convert.ToInt32(tblCABObject.CAB_HD_No);
             tblcab.CAB_HD_Title = tblCABObject.CAB_HD_Title;
             tblcab.CAB_Note = tblCABObject.CAB_Note;

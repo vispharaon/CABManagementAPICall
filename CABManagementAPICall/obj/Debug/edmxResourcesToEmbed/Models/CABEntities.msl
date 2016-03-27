@@ -13,14 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Log">
-      <EntityTypeMapping TypeName="cabmanagementModel.Log">
-        <MappingFragment StoreEntitySet="Log">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="log1" ColumnName="log" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblAttachments">
       <EntityTypeMapping TypeName="cabmanagementModel.tblAttachments">
         <MappingFragment StoreEntitySet="tblAttachments">
@@ -156,17 +148,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tblCABVoting">
-      <EntityTypeMapping TypeName="cabmanagementModel.tblCABVoting">
-        <MappingFragment StoreEntitySet="tblCABVoting">
-          <ScalarProperty Name="VoterID" ColumnName="VoterID" />
-          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
-          <ScalarProperty Name="VoteID" ColumnName="VoteID" />
-          <ScalarProperty Name="CABVote" ColumnName="CABVote" />
-          <ScalarProperty Name="CABVoteDate" ColumnName="CABVoteDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblDevelopers">
       <EntityTypeMapping TypeName="cabmanagementModel.tblDevelopers">
         <MappingFragment StoreEntitySet="tblDevelopers">
@@ -227,6 +208,17 @@
         <MappingFragment StoreEntitySet="TraceLog">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCABVoting">
+      <EntityTypeMapping TypeName="cabmanagementModel.tblCABVoting">
+        <MappingFragment StoreEntitySet="tblCABVoting">
+          <ScalarProperty Name="CABVoteDate" ColumnName="CABVoteDate" />
+          <ScalarProperty Name="CABVote" ColumnName="CABVote" />
+          <ScalarProperty Name="VoteID" ColumnName="VoteID" />
+          <ScalarProperty Name="CAB_HD_No" ColumnName="CAB_HD_No" />
+          <ScalarProperty Name="VoterID" ColumnName="VoterID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
