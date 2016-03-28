@@ -57,15 +57,28 @@ namespace CABManagementAPICall.Controllers
         }
 
         // GET api/CABVoting/5
-        public tblCABVoting GettblCABVoting(string id)
+        public object GettblCABVoting(int id)
         {
-            tblCABVoting tblcabvoting = db.tblCABVoting.Find(id);
-            if (tblcabvoting == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
+            var votingCAB = db.tblCABVoting.Join(db.tblCABSchedules, tv => tv.CAB_HD_No, tcs => tcs.CAB_HD_No, (tv, tcs) =>
+                new
+                {
+                    CAB_HD_No = tv.CAB_HD_No,
+                    devId = tv.VoterID,
+                    votedate = tv.CABVoteDate,
+                    votedatefrom = tcs.ScheduledStart,
+                    votedateto = tcs.ScheduledEnd,                    
+                }).Where(x => x.CAB_HD_No == id).Join(db.tblDevelopers, all => all.devId, td => td.DeveloperID, (all, td) =>
+               new
+               {
+                   CAB_HD_No = all.CAB_HD_No,
+                   votename = td.Ime,
+                   votelastname = td.Prezime,
+                   votedate = all.votedate,
+                   votedatefrom = all.votedatefrom,
+                   votedateto = all.votedateto,    
+               }).SingleOrDefault();
 
-            return tblcabvoting;
+            return votingCAB;
         }
 
         // PUT api/CABVoting/5

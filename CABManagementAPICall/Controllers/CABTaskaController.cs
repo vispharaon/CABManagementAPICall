@@ -12,9 +12,9 @@ using CABManagementAPICall.Models;
 
 namespace CABManagementAPICall.Controllers
 {
-    /*public class CABTaskaController : ApiController
+    public class CABTaskaController : ApiController
     {
-        private cabmanagementEntities db = new cabmanagementEntities();
+        private cabmanagementEntities3 db = new cabmanagementEntities3();
 
         // GET api/CABTaska
         public IEnumerable<tblCABTaska> GettblCABTaskas()
@@ -24,15 +24,28 @@ namespace CABManagementAPICall.Controllers
         }
 
         // GET api/CABTaska/5
-        public tblCABTaska GettblCABTaska(int id)
+        public object GettblCABTaska(int id)
         {
-            tblCABTaska tblcabtaska = db.tblCABTaska.Find(id);
-            if (tblcabtaska == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
+            var votingCAB = db.tblCABVoting.Join(db.tblCABSchedules, tv => tv.CAB_HD_No, tcs => tcs.CAB_HD_No, (tv, tcs) =>
+                new
+                {
+                    CAB_HD_No = tv.CAB_HD_No,
+                    devId = tv.VoterID,
+                    votedate = tv.CABVoteDate,
+                    votedatefrom = tcs.ScheduledStart,
+                    votedateto = tcs.ScheduledEnd,
+                }).Where(x => x.CAB_HD_No == id).Join(db.tblDevelopers, all => all.devId, td => td.DeveloperID, (all, td) =>
+               new
+               {
+                   CAB_HD_No = all.CAB_HD_No,
+                   votename = td.Ime,
+                   votelastname = td.Prezime,
+                   votedate = all.votedate,
+                   votedatefrom = all.votedatefrom,
+                   votedateto = all.votedateto,
+               }).SingleOrDefault();
 
-            return tblcabtaska;
+            return votingCAB;
         }
 
         // PUT api/CABTaska/5
@@ -105,5 +118,5 @@ namespace CABManagementAPICall.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }*/
+    }
 }

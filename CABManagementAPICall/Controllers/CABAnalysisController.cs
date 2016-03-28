@@ -12,9 +12,9 @@ using CABManagementAPICall.Models;
 
 namespace CABManagementAPICall.Controllers
 {
-    /*public class CABAnalysisController : ApiController
+    public class CABAnalysisController : ApiController
     {
-        private cabmanagementEntities db = new cabmanagementEntities();
+        private cabmanagementEntities3 db = new cabmanagementEntities3();
 
         // GET api/CABAnalysis
         public IEnumerable<tblCABAnalysis> GettblCABAnalysis()
@@ -24,15 +24,28 @@ namespace CABManagementAPICall.Controllers
         }
 
         // GET api/CABAnalysis/5
-        public tblCABAnalysis GettblCABAnalysis(int id)
+        public object GettblCABAnalysis(int id)
         {
-            tblCABAnalysis tblcabanalysis = db.tblCABAnalysis.Find(id);
-            if (tblcabanalysis == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
+            var votingCAB = db.tblCABVoting.Join(db.tblCABSchedules, tv => tv.CAB_HD_No, tcs => tcs.CAB_HD_No, (tv, tcs) =>
+                new
+                {
+                    CAB_HD_No = tv.CAB_HD_No,
+                    devId = tv.VoterID,
+                    votedate = tv.CABVoteDate,
+                    votedatefrom = tcs.ScheduledStart,
+                    votedateto = tcs.ScheduledEnd,
+                }).Where(x => x.CAB_HD_No == id).Join(db.tblDevelopers, all => all.devId, td => td.DeveloperID, (all, td) =>
+               new
+               {
+                   CAB_HD_No = all.CAB_HD_No,
+                   votename = td.Ime,
+                   votelastname = td.Prezime,
+                   votedate = all.votedate,
+                   votedatefrom = all.votedatefrom,
+                   votedateto = all.votedateto,
+               }).SingleOrDefault();
 
-            return tblcabanalysis;
+            return votingCAB;
         }
 
         // PUT api/CABAnalysis/5
@@ -105,5 +118,5 @@ namespace CABManagementAPICall.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }*/
+    }
 }

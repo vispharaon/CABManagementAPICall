@@ -12,9 +12,9 @@ using CABManagementAPICall.Models;
 
 namespace CABManagementAPICall.Controllers
 {
-    /*public class CABTestingController : ApiController
+    public class CABTestingController : ApiController
     {
-        private cabmanagementEntities db = new cabmanagementEntities();
+        private cabmanagementEntities3 db = new cabmanagementEntities3();
 
         // GET api/CABTesting
         public IEnumerable<tblCABTesting> GettblCABTestings()
@@ -24,15 +24,28 @@ namespace CABManagementAPICall.Controllers
         }
 
         // GET api/CABTesting/5
-        public tblCABTesting GettblCABTesting(int id)
+        public object GettblCABTesting(int id)
         {
-            tblCABTesting tblcabtesting = db.tblCABTesting.Find(id);
-            if (tblcabtesting == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
+            var votingCAB = db.tblCABVoting.Join(db.tblCABSchedules, tv => tv.CAB_HD_No, tcs => tcs.CAB_HD_No, (tv, tcs) =>
+                new
+                {
+                    CAB_HD_No = tv.CAB_HD_No,
+                    devId = tv.VoterID,
+                    votedate = tv.CABVoteDate,
+                    votedatefrom = tcs.ScheduledStart,
+                    votedateto = tcs.ScheduledEnd,
+                }).Where(x => x.CAB_HD_No == id).Join(db.tblDevelopers, all => all.devId, td => td.DeveloperID, (all, td) =>
+               new
+               {
+                   CAB_HD_No = all.CAB_HD_No,
+                   votename = td.Ime,
+                   votelastname = td.Prezime,
+                   votedate = all.votedate,
+                   votedatefrom = all.votedatefrom,
+                   votedateto = all.votedateto,
+               }).SingleOrDefault();
 
-            return tblcabtesting;
+            return votingCAB;
         }
 
         // PUT api/CABTesting/5
@@ -105,5 +118,5 @@ namespace CABManagementAPICall.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }*/
+    }
 }
