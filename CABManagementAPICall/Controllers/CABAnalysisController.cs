@@ -17,10 +17,35 @@ namespace CABManagementAPICall.Controllers
         private cabmanagementEntities3 db = new cabmanagementEntities3();
 
         // GET api/CABAnalysis
-        public IEnumerable<tblCABAnalysis> GettblCABAnalysis()
+        public IEnumerable<object> GettblCABAnalysis()
         {
-            var tblcabanalysis = db.tblCABAnalysis.Include(t => t.tblCAB).Include(t => t.tblDevelopers);
-            return tblcabanalysis.AsEnumerable();
+            var listVotingCABs = db.tblCAB.Join(db.tblCABHistory, tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
+                new
+                {
+                    CAB_HD_No = tc.CAB_HD_No,
+                    CAB_HD_Title = tc.CAB_HD_Title,
+                    CAB_Type = tc.CAB_Type,
+                    CAB_HD_Date = tc.CAB_HD_Date,
+                    CAB_Sender = tc.CAB_Sender,
+                    CAB_Priority = tc.CAB_Priority,
+                    CAB_Department = tc.CAB_Department,
+                    StatusID = tch.StatusID,
+                    StatusDate = tch.StatusDate
+                }).Where(x => x.StatusID == 3 || x.StatusID == 5).Join(db.tblStatusi, all => all.StatusID, ts => ts.StatusID, (all, ts) =>
+               new
+               {
+                   CAB_HD_No = all.CAB_HD_No,
+                   CAB_HD_Title = all.CAB_HD_Title,
+                   CAB_Type = all.CAB_Type,
+                   CAB_HD_Date = all.CAB_HD_Date,
+                   CAB_Sender = all.CAB_Sender,
+                   CAB_Priority = all.CAB_Priority,
+                   CAB_Department = all.CAB_Department,
+                   StatusName = ts.StatusDesc,
+                   StatusDate = all.StatusDate
+               });
+
+            return listVotingCABs.AsEnumerable();
         }
 
         // GET api/CABAnalysis/5
@@ -72,16 +97,25 @@ namespace CABManagementAPICall.Controllers
             }
         }
 
+        //TODO: napraviti PosttblCABAbalysis sa ostalim parametrima.
+
         // POST api/CABAnalysis
-        public HttpResponseMessage PosttblCABAnalysis(tblCABAnalysis tblcabanalysis)
+        public HttpResponseMessage PosttblCABAnalysis(int id, int status)
         {
             if (ModelState.IsValid)
-            {
-                db.tblCABAnalysis.Add(tblcabanalysis);
+            {               
+
+                tblCABHistory tblcabhistory = new tblCABHistory();
+                tblcabhistory.AnalyzeID = db.tblCABHistory.Where(x => x.CAB_HD_No == id).First().AnalyzeID;
+                tblcabhistory.CAB_HD_No = id;
+                tblcabhistory.StatusID = status;
+                tblcabhistory.StatusDate = DateTime.Now;
+                db.tblCABHistory.Add(tblcabhistory);
+
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabanalysis);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabanalysis.AnalyzeID }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabhistory);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabhistory.AnalyzeID }));
                 return response;
             }
             else

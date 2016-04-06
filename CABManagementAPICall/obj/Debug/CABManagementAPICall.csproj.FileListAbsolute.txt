@@ -29,3 +29,4 @@ C:\Users\user\documents\visual studio 2012\Projects\CABManagementAPICall\CABMana
 C:\Users\user\documents\visual studio 2012\Projects\CABManagementAPICall\CABManagementAPICall\bin\System.Web.WebPages.Razor.xml
 C:\Users\user\documents\visual studio 2012\Projects\CABManagementAPICall\CABManagementAPICall\obj\Debug\CABManagementAPICall.dll
 C:\Users\user\documents\visual studio 2012\Projects\CABManagementAPICall\CABManagementAPICall\obj\Debug\CABManagementAPICall.pdb
+C:\Users\user\documents\visual studio 2012\Projects\CABManagementAPICall\CABManagementAPICall\obj\Debug\CABManagementAPICall.csprojResolveAssemblyReference.cache
