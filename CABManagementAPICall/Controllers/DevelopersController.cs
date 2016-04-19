@@ -17,9 +17,16 @@ namespace CABManagementAPICall.Controllers
         private cabmanagementEntities3 db = new cabmanagementEntities3();
 
         // GET api/Developers
-        public IEnumerable<tblDevelopers> GettblDevelopers()
+        public IEnumerable<object> GettblDevelopers()
         {
-            return db.tblDevelopers.AsEnumerable();
+            return db.tblDevelopers.Where(x => x.IsDeveloper == 1).Select(x => 
+                new
+                {
+                    DeveloperId = x.DeveloperID,
+                    Ime = x.Ime,
+                    Prezime = x.Prezime,
+                    IsDeveloper = x.IsDeveloper
+                });
         }
 
         // GET api/Developers/5

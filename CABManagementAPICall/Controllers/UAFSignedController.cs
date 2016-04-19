@@ -12,12 +12,12 @@ using CABManagementAPICall.Models;
 
 namespace CABManagementAPICall.Controllers
 {
-    public class CABTestingController : ApiController
+    public class UAFSignedController : ApiController
     {
         private cabmanagementEntities3 db = new cabmanagementEntities3();
 
-        // GET api/CABTesting
-        public IEnumerable<object> GettblCABTestings()
+        // GET api/UAFSigned
+        public IEnumerable<object> GettblCABAnalysis()
         {
             var maxes = db.tblCABHistory.GroupBy(x => x.CAB_HD_No,     // Key selector
                          x => x.CABStatusID,   // Element selector
@@ -35,7 +35,7 @@ namespace CABManagementAPICall.Controllers
                     CAB_Department = tc.CAB_Department,
                     StatusID = tch.StatusID,
                     StatusDate = tch.StatusDate
-                }).Where(x => x.StatusID == 25 || x.StatusID == 26).Join(db.tblStatusi, all => all.StatusID, ts => ts.StatusID, (all, ts) =>
+                }).Where(x => x.StatusID == 28).Join(db.tblStatusi, all => all.StatusID, ts => ts.StatusID, (all, ts) =>
                new
                {
                    CAB_HD_No = all.CAB_HD_No,
@@ -52,37 +52,24 @@ namespace CABManagementAPICall.Controllers
             return listVotingCABs.AsEnumerable();
         }
 
-        // GET api/CABTesting/5
-        public object GettblCABTesting(int id)
+        // GET api/UAFSigned/5
+        public tblCABAnalysis GettblCABAnalysis(int id)
         {
-            var votingCAB = db.tblCABVoting.Join(db.tblCABSchedules, tv => tv.CAB_HD_No, tcs => tcs.CAB_HD_No, (tv, tcs) =>
-                new
-                {
-                    CAB_HD_No = tv.CAB_HD_No,
-                    devId = tv.VoterID,
-                    votedate = tv.CABVoteDate,
-                    votedatefrom = tcs.ScheduledStart,
-                    votedateto = tcs.ScheduledEnd,
-                }).Where(x => x.CAB_HD_No == id).Join(db.tblDevelopers, all => all.devId, td => td.DeveloperID, (all, td) =>
-               new
-               {
-                   CAB_HD_No = all.CAB_HD_No,
-                   votename = td.Ime,
-                   votelastname = td.Prezime,
-                   votedate = all.votedate,
-                   votedatefrom = all.votedatefrom,
-                   votedateto = all.votedateto,
-               }).SingleOrDefault();
+            tblCABAnalysis tblcabanalysis = db.tblCABAnalysis.Find(id);
+            if (tblcabanalysis == null)
+            {
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+            }
 
-            return votingCAB;
+            return tblcabanalysis;
         }
 
-        // PUT api/CABTesting/5
-        public HttpResponseMessage PuttblCABTesting(int id, tblCABTesting tblcabtesting)
+        // PUT api/UAFSigned/5
+        public HttpResponseMessage PuttblCABAnalysis(int id, tblCABAnalysis tblcabanalysis)
         {
-            if (ModelState.IsValid && id == tblcabtesting.ID)
+            if (ModelState.IsValid && id == tblcabanalysis.AnalyzeID)
             {
-                db.Entry(tblcabtesting).State = EntityState.Modified;
+                db.Entry(tblcabanalysis).State = EntityState.Modified;
 
                 try
                 {
@@ -101,16 +88,16 @@ namespace CABManagementAPICall.Controllers
             }
         }
 
-        // POST api/CABTesting
-        public HttpResponseMessage PosttblCABTesting(tblCABTesting tblcabtesting)
+        // POST api/UAFSigned
+        public HttpResponseMessage PosttblCABAnalysis(tblCABAnalysis tblcabanalysis)
         {
             if (ModelState.IsValid)
             {
-                db.tblCABTesting.Add(tblcabtesting);
+                db.tblCABAnalysis.Add(tblcabanalysis);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabtesting);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabtesting.ID }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabanalysis);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabanalysis.AnalyzeID }));
                 return response;
             }
             else
@@ -119,16 +106,16 @@ namespace CABManagementAPICall.Controllers
             }
         }
 
-        // DELETE api/CABTesting/5
-        public HttpResponseMessage DeletetblCABTesting(int id)
+        // DELETE api/UAFSigned/5
+        public HttpResponseMessage DeletetblCABAnalysis(int id)
         {
-            tblCABTesting tblcabtesting = db.tblCABTesting.Find(id);
-            if (tblcabtesting == null)
+            tblCABAnalysis tblcabanalysis = db.tblCABAnalysis.Find(id);
+            if (tblcabanalysis == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.tblCABTesting.Remove(tblcabtesting);
+            db.tblCABAnalysis.Remove(tblcabanalysis);
 
             try
             {
@@ -139,7 +126,7 @@ namespace CABManagementAPICall.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, tblcabtesting);
+            return Request.CreateResponse(HttpStatusCode.OK, tblcabanalysis);
         }
 
         protected override void Dispose(bool disposing)

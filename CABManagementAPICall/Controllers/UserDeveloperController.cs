@@ -27,11 +27,11 @@ namespace CABManagementAPICall.Controllers
         public tblDevelopers GettblDevelopers(string id)
         {
 
-            var entityLog = new TraceLog();
-            entityLog.id = logDB.TraceLog.Max(x => x.id) + 1;
-            entityLog.text = id;
-            logDB.TraceLog.Add(entityLog);
-            logDB.SaveChanges();
+            //var entityLog = new TraceLog();
+            //entityLog.id = logDB.TraceLog.Max(x => x.id) + 1;
+            //entityLog.text = id;
+            //logDB.TraceLog.Add(entityLog);
+            //logDB.SaveChanges();
 
             tblDevelopers tbldevelopers = db.tblDevelopers.Where(x => x.DeveloperID == id).FirstOrDefault();
             if (tbldevelopers == null)

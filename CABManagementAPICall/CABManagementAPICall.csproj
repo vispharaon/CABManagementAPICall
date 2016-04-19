@@ -138,11 +138,15 @@
     <Compile Include="Controllers\CABTestingController.cs" />
     <Compile Include="Controllers\CABTimesController.cs" />
     <Compile Include="Controllers\CABVotingController.cs" />
+    <Compile Include="Controllers\CABForTaskingController.cs" />
     <Compile Include="Controllers\DevelopersController.cs" />
     <Compile Include="Controllers\DevelopersTimesController.cs" />
+    <Compile Include="Controllers\ProductionDeploymentController.cs" />
+    <Compile Include="Controllers\QAValidationController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\TaskHistoryController.cs" />
     <Compile Include="Controllers\TraceLogController.cs" />
+    <Compile Include="Controllers\UAFSignedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserDeveloperController.cs" />

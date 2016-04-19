@@ -27,7 +27,11 @@ namespace CABManagementAPICall.Controllers
         public IEnumerable<object> GettblCABs()
         {
             //todo: Dodati join sa tabelom tblStatusi i dodati uslov za tblCABHistory da uzima samo zadnji CABStatusId za CAB_HD_No.
-            var listVotingCABs = db.tblCAB.Join(db.tblCABHistory, tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
+            var maxes = db.tblCABHistory.GroupBy(x => x.CAB_HD_No,     // Key selector
+                         x => x.CABStatusID,   // Element selector
+                         (key, values) => values.Max()); // Result selector
+
+            var listVotingCABs = db.tblCAB.Join(db.tblCABHistory.Where(x => maxes.Contains(x.CABStatusID)), tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
                 new
                 {
                     CAB_HD_No = tc.CAB_HD_No,

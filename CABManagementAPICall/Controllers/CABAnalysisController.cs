@@ -19,7 +19,11 @@ namespace CABManagementAPICall.Controllers
         // GET api/CABAnalysis
         public IEnumerable<object> GettblCABAnalysis()
         {
-            var listVotingCABs = db.tblCAB.Join(db.tblCABHistory, tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
+            var maxes = db.tblCABHistory.GroupBy(x => x.CAB_HD_No,     // Key selector
+                         x => x.CABStatusID,   // Element selector
+                         (key, values) => values.Max()); // Result selector
+
+            var listVotingCABs = db.tblCAB.Join(db.tblCABHistory.Where(x => maxes.Contains(x.CABStatusID)), tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
                 new
                 {
                     CAB_HD_No = tc.CAB_HD_No,
@@ -97,14 +101,47 @@ namespace CABManagementAPICall.Controllers
             }
         }
 
-        //TODO: napraviti PosttblCABAbalysis sa ostalim parametrima.
+        //($scope.selectedCAB.CAB_HD_No, $scope.cabPredictedWH, $scope.analyzeDescription, $cookieStore.get('globals').currentUser.username
+        // POST api/CABAnalysis
+        public HttpResponseMessage PosttblCABAnalysis(int id, int predictedWH, string analyzeDescription, string username)
+        {
+            if (ModelState.IsValid)
+            {
+                tblCABHistory tblcabhistory = new tblCABHistory();
+                tblcabhistory.AnalyzeID = db.tblCABHistory.Where(x => x.CAB_HD_No == id).First().AnalyzeID;
+                tblcabhistory.CAB_HD_No = id;                
+                tblcabhistory.StatusID = 6;
+                tblcabhistory.StatusDate = DateTime.Now;
+                db.tblCABHistory.Add(tblcabhistory);
+
+                db.tblCABAnalysis.Where(x => x.CAB_HD_No == id).Single().AnalyzeText = analyzeDescription;
+                db.tblCABAnalysis.Where(x => x.CAB_HD_No == id).Single().PredictedWH = predictedWH;
+                db.tblCABAnalysis.Where(x => x.CAB_HD_No == id).Single().AnalyzerID = username;
+
+                tblCABTesting tblcabtesting = new tblCABTesting();
+                tblcabtesting.CAB_HD_No = id;
+                tblcabtesting.Datum_Izmjene = DateTime.Now;
+                tblcabtesting.DeveloperID = username;
+                tblcabtesting.Status_Test = "1";
+                db.tblCABTesting.Add(tblcabtesting);
+                
+                db.SaveChanges();
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, tblcabhistory);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = tblcabhistory.AnalyzeID }));
+                return response;
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
 
         // POST api/CABAnalysis
         public HttpResponseMessage PosttblCABAnalysis(int id, int status)
         {
             if (ModelState.IsValid)
-            {               
-
+            { 
                 tblCABHistory tblcabhistory = new tblCABHistory();
                 tblcabhistory.AnalyzeID = db.tblCABHistory.Where(x => x.CAB_HD_No == id).First().AnalyzeID;
                 tblcabhistory.CAB_HD_No = id;
