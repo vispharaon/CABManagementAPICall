@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="cabmanagementModel1StoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="mirnesModelStoreContainer" CdmEntityContainer="mirnesEntities1">
     <EntitySetMapping Name="Adresa">
-      <EntityTypeMapping TypeName="cabmanagementModel1.Adresa">
+      <EntityTypeMapping TypeName="mirnesModel.Adresa">
         <MappingFragment StoreEntitySet="Adresa">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="grad" ColumnName="grad" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Covjek">
-      <EntityTypeMapping TypeName="cabmanagementModel1.Covjek">
+      <EntityTypeMapping TypeName="mirnesModel.Covjek">
         <MappingFragment StoreEntitySet="Covjek">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="ime" ColumnName="ime" />
@@ -28,7 +28,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Dzemati">
-      <EntityTypeMapping TypeName="cabmanagementModel1.Dzemati">
+      <EntityTypeMapping TypeName="mirnesModel.Dzemati">
         <MappingFragment StoreEntitySet="Dzemati">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="naziv" ColumnName="naziv" />
@@ -39,7 +39,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Korisnici">
-      <EntityTypeMapping TypeName="cabmanagementModel1.Korisnici">
+      <EntityTypeMapping TypeName="mirnesModel.Korisnici">
         <MappingFragment StoreEntitySet="Korisnici">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="username" ColumnName="username" />

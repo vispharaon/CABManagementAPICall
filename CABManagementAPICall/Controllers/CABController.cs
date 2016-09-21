@@ -18,16 +18,9 @@ namespace CABManagementAPICall.Controllers
     {
         private cabmanagementEntities3 db = new cabmanagementEntities3();
         private cabmanagementEntities3 logDB = new cabmanagementEntities3();
-
-        //// GET api/CAB
-        //public IEnumerable<tblCAB> GettblCABs()
-        //{
-        //    return db.tblCAB.AsEnumerable();
-        //}
-
+        // GET api/CAB
         public IEnumerable<object> GettblCABs()
         {   
-            //todo: Dodati join sa tabelom tblStatusi i dodati uslov za tblCABHistory da uzima samo zadnji CABStatusId za CAB_HD_No.
             var maxes = db.tblCABHistory.GroupBy(x => x.CAB_HD_No,     // Key selector
                          x => x.CABStatusID,   // Element selector
                          (key, values) => values.Max()); // Result selector

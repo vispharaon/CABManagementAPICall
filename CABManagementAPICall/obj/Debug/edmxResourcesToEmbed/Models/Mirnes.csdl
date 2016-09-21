@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="cabmanagementModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="Adresa" EntityType="cabmanagementModel1.Adresa" />
-    <EntitySet Name="Covjek" EntityType="cabmanagementModel1.Covjek" />
-    <EntitySet Name="Dzemati" EntityType="cabmanagementModel1.Dzemati" />
-    <EntitySet Name="Korisnici" EntityType="cabmanagementModel1.Korisnici" />
-    <AssociationSet Name="FK_Covjek_Adresa" Association="cabmanagementModel1.FK_Covjek_Adresa">
+<Schema Namespace="mirnesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="mirnesEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Adresa" EntityType="mirnesModel.Adresa" />
+    <EntitySet Name="Covjek" EntityType="mirnesModel.Covjek" />
+    <EntitySet Name="Dzemati" EntityType="mirnesModel.Dzemati" />
+    <EntitySet Name="Korisnici" EntityType="mirnesModel.Korisnici" />
+    <AssociationSet Name="FK_Covjek_Adresa" Association="mirnesModel.FK_Covjek_Adresa">
       <End Role="Adresa" EntitySet="Adresa" />
       <End Role="Covjek" EntitySet="Covjek" />
     </AssociationSet>
-    <AssociationSet Name="FK_Dzemati_Adresa" Association="cabmanagementModel1.FK_Dzemati_Adresa">
+    <AssociationSet Name="FK_Dzemati_Adresa" Association="mirnesModel.FK_Dzemati_Adresa">
       <End Role="Adresa" EntitySet="Adresa" />
       <End Role="Dzemati" EntitySet="Dzemati" />
     </AssociationSet>
@@ -23,8 +23,8 @@
     <Property Name="drzava" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="broj" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="postanskiBroj" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-    <NavigationProperty Name="Covjek" Relationship="cabmanagementModel1.FK_Covjek_Adresa" FromRole="Adresa" ToRole="Covjek" />
-    <NavigationProperty Name="Dzemati" Relationship="cabmanagementModel1.FK_Dzemati_Adresa" FromRole="Adresa" ToRole="Dzemati" />
+    <NavigationProperty Name="Covjek" Relationship="mirnesModel.FK_Covjek_Adresa" FromRole="Adresa" ToRole="Covjek" />
+    <NavigationProperty Name="Dzemati" Relationship="mirnesModel.FK_Dzemati_Adresa" FromRole="Adresa" ToRole="Dzemati" />
   </EntityType>
   <EntityType Name="Covjek">
     <Key>
@@ -39,7 +39,7 @@
     <Property Name="isImam" Type="Boolean" />
     <Property Name="isReis" Type="Boolean" />
     <Property Name="isUpravniOdbor" Type="Boolean" />
-    <NavigationProperty Name="Adresa" Relationship="cabmanagementModel1.FK_Covjek_Adresa" FromRole="Covjek" ToRole="Adresa" />
+    <NavigationProperty Name="Adresa" Relationship="mirnesModel.FK_Covjek_Adresa" FromRole="Covjek" ToRole="Adresa" />
   </EntityType>
   <EntityType Name="Dzemati">
     <Key>
@@ -50,7 +50,7 @@
     <Property Name="adresaId" Type="Int32" Nullable="false" />
     <Property Name="email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="brojDzamija" Type="Int32" />
-    <NavigationProperty Name="Adresa" Relationship="cabmanagementModel1.FK_Dzemati_Adresa" FromRole="Dzemati" ToRole="Adresa" />
+    <NavigationProperty Name="Adresa" Relationship="mirnesModel.FK_Dzemati_Adresa" FromRole="Dzemati" ToRole="Adresa" />
   </EntityType>
   <EntityType Name="Korisnici">
     <Key>
@@ -64,8 +64,8 @@
     <Property Name="isAdmin" Type="Boolean" />
   </EntityType>
   <Association Name="FK_Covjek_Adresa">
-    <End Role="Adresa" Type="cabmanagementModel1.Adresa" Multiplicity="0..1" />
-    <End Role="Covjek" Type="cabmanagementModel1.Covjek" Multiplicity="*" />
+    <End Role="Adresa" Type="mirnesModel.Adresa" Multiplicity="0..1" />
+    <End Role="Covjek" Type="mirnesModel.Covjek" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Adresa">
         <PropertyRef Name="id" />
@@ -76,8 +76,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Dzemati_Adresa">
-    <End Role="Adresa" Type="cabmanagementModel1.Adresa" Multiplicity="1" />
-    <End Role="Dzemati" Type="cabmanagementModel1.Dzemati" Multiplicity="*" />
+    <End Role="Adresa" Type="mirnesModel.Adresa" Multiplicity="1" />
+    <End Role="Dzemati" Type="mirnesModel.Dzemati" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Adresa">
         <PropertyRef Name="id" />

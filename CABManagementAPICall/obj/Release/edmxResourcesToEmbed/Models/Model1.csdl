@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="cabmanagementModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+  <EntityContainer Name="mirnesEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Adresa" EntityType="cabmanagementModel1.Adresa" />
     <EntitySet Name="Covjek" EntityType="cabmanagementModel1.Covjek" />
     <EntitySet Name="Dzemati" EntityType="cabmanagementModel1.Dzemati" />
-    <EntitySet Name="Korisnici" EntityType="cabmanagementModel1.Korisnici" />
     <AssociationSet Name="FK_Covjek_Adresa" Association="cabmanagementModel1.FK_Covjek_Adresa">
       <End Role="Adresa" EntitySet="Adresa" />
       <End Role="Covjek" EntitySet="Covjek" />
@@ -51,17 +50,6 @@
     <Property Name="email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="brojDzamija" Type="Int32" />
     <NavigationProperty Name="Adresa" Relationship="cabmanagementModel1.FK_Dzemati_Adresa" FromRole="Dzemati" ToRole="Adresa" />
-  </EntityType>
-  <EntityType Name="Korisnici">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="username" />
-      <PropertyRef Name="password" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="password" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-    <Property Name="isAdmin" Type="Boolean" />
   </EntityType>
   <Association Name="FK_Covjek_Adresa">
     <End Role="Adresa" Type="cabmanagementModel1.Adresa" Multiplicity="0..1" />

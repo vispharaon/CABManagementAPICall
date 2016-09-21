@@ -125,6 +125,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdresaController.cs" />
     <Compile Include="Controllers\AttachmentController.cs" />
     <Compile Include="Controllers\CABAnalysisController.cs" />
     <Compile Include="Controllers\CABCodeReviewController.cs" />
@@ -139,8 +140,11 @@
     <Compile Include="Controllers\CABTimesController.cs" />
     <Compile Include="Controllers\CABVotingController.cs" />
     <Compile Include="Controllers\CABForTaskingController.cs" />
+    <Compile Include="Controllers\CovjekController.cs" />
     <Compile Include="Controllers\DevelopersController.cs" />
     <Compile Include="Controllers\DevelopersTimesController.cs" />
+    <Compile Include="Controllers\DzematiController.cs" />
+    <Compile Include="Controllers\KorisniciController.cs" />
     <Compile Include="Controllers\ProductionDeploymentController.cs" />
     <Compile Include="Controllers\QAValidationController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
@@ -153,6 +157,9 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Adresa.cs">
+      <DependentUpon>Mirnes.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CABEntities.Context.cs">
       <AutoGen>True</AutoGen>
@@ -172,8 +179,32 @@
     <Compile Include="Models\CABTimes.cs">
       <DependentUpon>CABEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Covjek.cs">
+      <DependentUpon>Mirnes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dzemati.cs">
+      <DependentUpon>Mirnes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Korisnici.cs">
+      <DependentUpon>Mirnes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Log.cs">
       <DependentUpon>CABEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mirnes.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mirnes.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mirnes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mirnes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mirnes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mirnes.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\tblAttachments.cs">
       <DependentUpon>CABEntities.tt</DependentUpon>
@@ -304,6 +335,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CABEntities.edmx</DependentUpon>
       <LastGenOutput>CABEntities.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Mirnes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Mirnes.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Mirnes.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Mirnes.edmx</DependentUpon>
+      <LastGenOutput>Mirnes.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Mirnes.edmx.diagram">
+      <DependentUpon>Mirnes.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Mirnes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Mirnes.edmx</DependentUpon>
+      <LastGenOutput>Mirnes.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\CabManagementSOMEE.pubxml" />
     <None Include="Properties\PublishProfiles\myASP.NET.pubxml" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="cabmanagementModel1StoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="cabmanagementModel1StoreContainer" CdmEntityContainer="mirnesEntities">
     <EntitySetMapping Name="Adresa">
       <EntityTypeMapping TypeName="cabmanagementModel1.Adresa">
         <MappingFragment StoreEntitySet="Adresa">
@@ -35,16 +35,6 @@
           <ScalarProperty Name="adresaId" ColumnName="adresaId" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="brojDzamija" ColumnName="brojDzamija" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Korisnici">
-      <EntityTypeMapping TypeName="cabmanagementModel1.Korisnici">
-        <MappingFragment StoreEntitySet="Korisnici">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

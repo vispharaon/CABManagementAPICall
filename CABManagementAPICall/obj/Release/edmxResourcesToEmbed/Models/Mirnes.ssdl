@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="cabmanagementModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="cabmanagementModel1StoreContainer">
-    <EntitySet Name="Adresa" EntityType="cabmanagementModel1.Store.Adresa" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Covjek" EntityType="cabmanagementModel1.Store.Covjek" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Dzemati" EntityType="cabmanagementModel1.Store.Dzemati" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Korisnici" EntityType="cabmanagementModel1.Store.Korisnici" store:Type="Tables" store:Schema="dbo" store:Name="Korisnici">
+<Schema Namespace="mirnesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="mirnesModelStoreContainer">
+    <EntitySet Name="Adresa" EntityType="mirnesModel.Store.Adresa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Covjek" EntityType="mirnesModel.Store.Covjek" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Dzemati" EntityType="mirnesModel.Store.Dzemati" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Korisnici" EntityType="mirnesModel.Store.Korisnici" store:Type="Tables" store:Schema="dbo" store:Name="Korisnici">
       <DefiningQuery>SELECT 
       [Korisnici].[id] AS [id], 
       [Korisnici].[username] AS [username], 
@@ -12,11 +12,11 @@
       [Korisnici].[isAdmin] AS [isAdmin]
       FROM [dbo].[Korisnici] AS [Korisnici]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_Covjek_Adresa" Association="cabmanagementModel1.Store.FK_Covjek_Adresa">
+    <AssociationSet Name="FK_Covjek_Adresa" Association="mirnesModel.Store.FK_Covjek_Adresa">
       <End Role="Adresa" EntitySet="Adresa" />
       <End Role="Covjek" EntitySet="Covjek" />
     </AssociationSet>
-    <AssociationSet Name="FK_Dzemati_Adresa" Association="cabmanagementModel1.Store.FK_Dzemati_Adresa">
+    <AssociationSet Name="FK_Dzemati_Adresa" Association="mirnesModel.Store.FK_Dzemati_Adresa">
       <End Role="Adresa" EntitySet="Adresa" />
       <End Role="Dzemati" EntitySet="Dzemati" />
     </AssociationSet>
@@ -70,8 +70,8 @@
     <Property Name="isAdmin" Type="bit" />
   </EntityType>
   <Association Name="FK_Covjek_Adresa">
-    <End Role="Adresa" Type="cabmanagementModel1.Store.Adresa" Multiplicity="0..1" />
-    <End Role="Covjek" Type="cabmanagementModel1.Store.Covjek" Multiplicity="*" />
+    <End Role="Adresa" Type="mirnesModel.Store.Adresa" Multiplicity="0..1" />
+    <End Role="Covjek" Type="mirnesModel.Store.Covjek" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Adresa">
         <PropertyRef Name="id" />
@@ -82,8 +82,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Dzemati_Adresa">
-    <End Role="Adresa" Type="cabmanagementModel1.Store.Adresa" Multiplicity="1" />
-    <End Role="Dzemati" Type="cabmanagementModel1.Store.Dzemati" Multiplicity="*" />
+    <End Role="Adresa" Type="mirnesModel.Store.Adresa" Multiplicity="1" />
+    <End Role="Dzemati" Type="mirnesModel.Store.Dzemati" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Adresa">
         <PropertyRef Name="id" />

@@ -4,14 +4,6 @@
     <EntitySet Name="Adresa" EntityType="cabmanagementModel1.Store.Adresa" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Covjek" EntityType="cabmanagementModel1.Store.Covjek" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Dzemati" EntityType="cabmanagementModel1.Store.Dzemati" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Korisnici" EntityType="cabmanagementModel1.Store.Korisnici" store:Type="Tables" store:Schema="dbo" store:Name="Korisnici">
-      <DefiningQuery>SELECT 
-      [Korisnici].[id] AS [id], 
-      [Korisnici].[username] AS [username], 
-      [Korisnici].[password] AS [password], 
-      [Korisnici].[isAdmin] AS [isAdmin]
-      FROM [dbo].[Korisnici] AS [Korisnici]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_Covjek_Adresa" Association="cabmanagementModel1.Store.FK_Covjek_Adresa">
       <End Role="Adresa" EntitySet="Adresa" />
       <End Role="Covjek" EntitySet="Covjek" />
@@ -54,20 +46,6 @@
     <Property Name="adresaId" Type="int" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="50" />
     <Property Name="brojDzamija" Type="int" />
-  </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'cabmanagement.dbo.Korisnici' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-  <EntityType Name="Korisnici">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="username" />
-      <PropertyRef Name="password" />
-    </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="username" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="200" />
-    <Property Name="isAdmin" Type="bit" />
   </EntityType>
   <Association Name="FK_Covjek_Adresa">
     <End Role="Adresa" Type="cabmanagementModel1.Store.Adresa" Multiplicity="0..1" />

@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mirnesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="mirnesModelStoreContainer">
+          <EntitySet Name="Adresa" EntityType="mirnesModel.Store.Adresa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Covjek" EntityType="mirnesModel.Store.Covjek" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dzemati" EntityType="mirnesModel.Store.Dzemati" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Korisnici" EntityType="mirnesModel.Store.Korisnici" store:Type="Tables" store:Schema="dbo" store:Name="Korisnici">
+            <DefiningQuery>SELECT 
+      [Korisnici].[id] AS [id], 
+      [Korisnici].[username] AS [username], 
+      [Korisnici].[password] AS [password], 
+      [Korisnici].[isAdmin] AS [isAdmin]
+      FROM [dbo].[Korisnici] AS [Korisnici]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Covjek_Adresa" Association="mirnesModel.Store.FK_Covjek_Adresa">
+            <End Role="Adresa" EntitySet="Adresa" />
+            <End Role="Covjek" EntitySet="Covjek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dzemati_Adresa" Association="mirnesModel.Store.FK_Dzemati_Adresa">
+            <End Role="Adresa" EntitySet="Adresa" />
+            <End Role="Dzemati" EntitySet="Dzemati" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Adresa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="grad" Type="varchar" MaxLength="100" />
+          <Property Name="drzava" Type="varchar" MaxLength="50" />
+          <Property Name="broj" Type="varchar" MaxLength="10" />
+          <Property Name="postanskiBroj" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Covjek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="varchar" MaxLength="50" />
+          <Property Name="prezime" Type="varchar" MaxLength="50" />
+          <Property Name="telefon" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="adresaId" Type="int" />
+          <Property Name="isImam" Type="bit" />
+          <Property Name="isReis" Type="bit" />
+          <Property Name="isUpravniOdbor" Type="bit" />
+        </EntityType>
+        <EntityType Name="Dzemati">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="varchar" MaxLength="50" />
+          <Property Name="adresaId" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="brojDzamija" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cabmanagement.dbo.Korisnici' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Korisnici">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="username" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="isAdmin" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Covjek_Adresa">
+          <End Role="Adresa" Type="mirnesModel.Store.Adresa" Multiplicity="0..1" />
+          <End Role="Covjek" Type="mirnesModel.Store.Covjek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Covjek">
+              <PropertyRef Name="adresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dzemati_Adresa">
+          <End Role="Adresa" Type="mirnesModel.Store.Adresa" Multiplicity="1" />
+          <End Role="Dzemati" Type="mirnesModel.Store.Dzemati" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dzemati">
+              <PropertyRef Name="adresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mirnesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="mirnesEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Adresa" EntityType="mirnesModel.Adresa" />
+          <EntitySet Name="Covjek" EntityType="mirnesModel.Covjek" />
+          <EntitySet Name="Dzemati" EntityType="mirnesModel.Dzemati" />
+          <EntitySet Name="Korisnici" EntityType="mirnesModel.Korisnici" />
+          <AssociationSet Name="FK_Covjek_Adresa" Association="mirnesModel.FK_Covjek_Adresa">
+            <End Role="Adresa" EntitySet="Adresa" />
+            <End Role="Covjek" EntitySet="Covjek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dzemati_Adresa" Association="mirnesModel.FK_Dzemati_Adresa">
+            <End Role="Adresa" EntitySet="Adresa" />
+            <End Role="Dzemati" EntitySet="Dzemati" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Adresa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="grad" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="drzava" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="broj" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="postanskiBroj" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Covjek" Relationship="mirnesModel.FK_Covjek_Adresa" FromRole="Adresa" ToRole="Covjek" />
+          <NavigationProperty Name="Dzemati" Relationship="mirnesModel.FK_Dzemati_Adresa" FromRole="Adresa" ToRole="Dzemati" />
+        </EntityType>
+        <EntityType Name="Covjek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="prezime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="telefon" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="adresaId" Type="Int32" />
+          <Property Name="isImam" Type="Boolean" />
+          <Property Name="isReis" Type="Boolean" />
+          <Property Name="isUpravniOdbor" Type="Boolean" />
+          <NavigationProperty Name="Adresa" Relationship="mirnesModel.FK_Covjek_Adresa" FromRole="Covjek" ToRole="Adresa" />
+        </EntityType>
+        <EntityType Name="Dzemati">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="adresaId" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="brojDzamija" Type="Int32" />
+          <NavigationProperty Name="Adresa" Relationship="mirnesModel.FK_Dzemati_Adresa" FromRole="Dzemati" ToRole="Adresa" />
+        </EntityType>
+        <EntityType Name="Korisnici">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="username" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="isAdmin" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Covjek_Adresa">
+          <End Role="Adresa" Type="mirnesModel.Adresa" Multiplicity="0..1" />
+          <End Role="Covjek" Type="mirnesModel.Covjek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Covjek">
+              <PropertyRef Name="adresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dzemati_Adresa">
+          <End Role="Adresa" Type="mirnesModel.Adresa" Multiplicity="1" />
+          <End Role="Dzemati" Type="mirnesModel.Dzemati" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dzemati">
+              <PropertyRef Name="adresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mirnesModelStoreContainer" CdmEntityContainer="mirnesEntities1">
+          <EntitySetMapping Name="Adresa">
+            <EntityTypeMapping TypeName="mirnesModel.Adresa">
+              <MappingFragment StoreEntitySet="Adresa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="grad" ColumnName="grad" />
+                <ScalarProperty Name="drzava" ColumnName="drzava" />
+                <ScalarProperty Name="broj" ColumnName="broj" />
+                <ScalarProperty Name="postanskiBroj" ColumnName="postanskiBroj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Covjek">
+            <EntityTypeMapping TypeName="mirnesModel.Covjek">
+              <MappingFragment StoreEntitySet="Covjek">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="adresaId" ColumnName="adresaId" />
+                <ScalarProperty Name="isImam" ColumnName="isImam" />
+                <ScalarProperty Name="isReis" ColumnName="isReis" />
+                <ScalarProperty Name="isUpravniOdbor" ColumnName="isUpravniOdbor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dzemati">
+            <EntityTypeMapping TypeName="mirnesModel.Dzemati">
+              <MappingFragment StoreEntitySet="Dzemati">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="adresaId" ColumnName="adresaId" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="brojDzamija" ColumnName="brojDzamija" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisnici">
+            <EntityTypeMapping TypeName="mirnesModel.Korisnici">
+              <MappingFragment StoreEntitySet="Korisnici">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -57,12 +57,12 @@ namespace CABManagementAPICall.Controllers
                          x => x.TaskHistoryID,   // Element selector
                          (key, values) => values.Max());
 
-            TraceLog tlog = new TraceLog();
-            tlog.id = db.TraceLog.Max(x => x.id) + 1;
-            tlog.text = maxesHistory.Count().ToString();
-            db.TraceLog.Add(tlog);
+            //TraceLog tlog = new TraceLog();
+            //tlog.id = db.TraceLog.Max(x => x.id) + 1;
+            //tlog.text = maxesHistory.Count().ToString();
+            //db.TraceLog.Add(tlog);
 
-            db.SaveChanges();
+            //db.SaveChanges();
 
             var listTasks = db.tblCAB.Join(db.tblCABHistory.Where(x => maxes.Contains(x.CABStatusID)), tc => tc.CAB_HD_No, tch => tch.CAB_HD_No, (tc, tch) =>
                 new
@@ -202,7 +202,7 @@ namespace CABManagementAPICall.Controllers
 
             var cabTaskIds = db.tblCABTaska.Where(x => x.CAB_HD_No == cab).Select(x => x.CAB_Task_ID);
 
-            var avgStatus = db.tblTaskHistory.Where(x => cabTaskIds.Contains(x.CAB_TASK_ID)).Average(x => x.StatusID);
+            var avgStatus = db.tblTaskHistory.Where(x => cabTaskIds.Contains(x.CAB_TASK_ID) && maxesHistory.Contains(x.TaskHistoryID)).Average(x => x.StatusID);
             return (int) avgStatus;
         }
 
